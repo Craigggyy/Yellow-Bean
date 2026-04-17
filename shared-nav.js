@@ -21,14 +21,9 @@
       <div class="collapse navbar-collapse" id="navMain">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li class="nav-item"><a class="nav-link" href="${base}index.html">Home</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="${base}pages/about.html">Our Story</a></li>
-              <li><a class="dropdown-item" href="${base}pages/about.html#mission">Mission & Vision</a></li>
-              <li><a class="dropdown-item" href="${base}pages/about.html#goals">Goals & Objectives</a></li>
-            </ul>
-          </li>
+          <li class="nav-item">
+  <a class="nav-link" href="${base}pages/about.html">About</a>
+</li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/menu.html">Menu</a></li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/services.html">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/personnel.html">Our Team</a></li>
