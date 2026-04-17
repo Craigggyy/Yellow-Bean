@@ -6,209 +6,652 @@
   <title>Blog & Reviews — Yellow Bean Café</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    :root {
+      --brown: #4B2E13;
+      --brown-mid: #7A4F2E;
+      --yellow: #F5C518;
+      --yellow-lt: #FDE87A;
+      --cream: #FDF8F0;
+      --cream-dk: #F5EFE0;
+      --white: #ffffff;
+      --muted: #8A7560;
+      --border: #E8DEC8;
+      --shadow-sm: 0 1px 4px rgba(75,46,19,.06);
+      --shadow: 0 4px 20px rgba(75,46,19,.09);
+      --shadow-md: 0 8px 32px rgba(75,46,19,.12);
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: #2d1f0e;
+    }
+
+    /* ── PAGE BANNER ── */
+    .page-banner {
+      background: linear-gradient(135deg, var(--brown) 0%, #7A4F2E 100%);
+      padding: 72px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .page-banner h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--yellow);
+      margin: 0 0 10px;
+      position: relative;
+    }
+
+    .page-banner p {
+      color: rgba(255,255,255,0.75);
+      font-size: .95rem;
+      font-weight: 300;
+      margin: 0 0 20px;
+      position: relative;
+    }
+
+    .breadcrumb-yb {
+      justify-content: center;
+      background: transparent;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .breadcrumb-yb .breadcrumb-item a {
+      color: var(--yellow-lt);
+      text-decoration: none;
+      font-size: .82rem;
+    }
+
+    .breadcrumb-yb .breadcrumb-item.active {
+      color: rgba(255,255,255,0.5);
+      font-size: .82rem;
+    }
+
+    .breadcrumb-yb .breadcrumb-item + .breadcrumb-item::before {
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── SECTIONS ── */
+    .section-pad { padding: 72px 0; }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      background: rgba(245,197,24,.15);
+      border: 1px solid rgba(245,197,24,.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--brown);
+      margin: 0 0 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: .92rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── BLOG CARDS ── */
+    .blog-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+
+    .blog-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .blog-card-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-card-thumb .thumb-icon {
+      position: relative;
+      z-index: 1;
+      line-height: 1;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.12));
+    }
+
+    .blog-card-body {
+      padding: 22px;
+    }
+
+    .tag-pill {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      background: rgba(245,197,24,.15);
+      border: 1px solid rgba(245,197,24,.25);
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .blog-card-body h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+
+    .blog-card-body p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0 0 14px;
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .75rem;
+      color: #b09e88;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .blog-meta i { font-size: .7rem; }
+
+    /* ── RATING SUMMARY ── */
+    .rating-summary-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 36px 28px;
+      text-align: center;
+    }
+
+    .rating-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1;
+    }
+
+    .stars-display {
+      color: var(--yellow);
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      display: block;
+      margin: 8px 0 4px;
+    }
+
+    .star-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 6px 0;
+    }
+
+    .star-bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: var(--cream-dk);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .star-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--yellow), #f0b800);
+      border-radius: 10px;
+    }
+
+    /* ── REVIEW CARDS ── */
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 26px;
+      height: 100%;
+      position: relative;
+      transition: box-shadow .2s ease;
+    }
+
+    .review-card:hover {
+      box-shadow: var(--shadow);
+    }
+
+    .review-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: .8;
+      color: var(--yellow);
+      opacity: .35;
+      position: absolute;
+      top: 14px;
+      left: 18px;
+    }
+
+    .review-stars {
+      color: var(--yellow);
+      font-size: .9rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .review-text {
+      font-size: .875rem;
+      color: #5a4535;
+      line-height: 1.7;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      margin: 0 0 18px;
+    }
+
+    .reviewer-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--yellow), #e8b800);
+      color: var(--brown);
+      font-weight: 700;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      font-size: .85rem;
+      color: var(--brown);
+      line-height: 1.2;
+    }
+
+    .reviewer-source {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── CTA BLOCK ── */
+    .review-cta {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 44px 32px;
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .review-cta h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 0 0 8px;
+    }
+
+    .review-cta p {
+      color: var(--muted);
+      font-size: .88rem;
+      margin: 0 0 22px;
+    }
+
+    .btn-fb {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1877F2;
+      color: #fff;
+      font-weight: 600;
+      font-size: .9rem;
+      padding: 13px 30px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: background .18s ease;
+    }
+
+    .btn-fb:hover {
+      background: #1464d0;
+      color: #fff;
+    }
+
+    .btn-fb i { font-size: 1rem; }
+
+    /* ── SECTION BACKGROUNDS ── */
+    .bg-cream { background: var(--cream); }
+    .bg-cream-dk { background: var(--cream-dk); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 5%;
+    }
+  </style>
 </head>
 <body>
 
+<!-- PAGE BANNER -->
 <div class="page-banner">
-  <h1>Blog & Reviews</h1>
+  <h1>Blog &amp; Reviews</h1>
   <p>Stories, tips, and real words from our customers.</p>
-  <nav aria-label="breadcrumb"><ol class="breadcrumb breadcrumb-yb"><li class="breadcrumb-item"><a href="../index.html">Home</a></li><li class="breadcrumb-item active">Blog & Reviews</li></ol></nav>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-yb">
+      <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+      <li class="breadcrumb-item active">Blog &amp; Reviews</li>
+    </ol>
+  </nav>
 </div>
 
 <!-- BLOG SECTION -->
 <section class="section-pad bg-cream">
   <div class="container">
+
     <div class="text-center mb-5">
-      <span class="badge-category">From the Café</span>
-      <h2 class="section-title d-block mx-auto">Latest Blog Posts</h2>
+      <span class="section-eyebrow">From the Café</span>
+      <h2 class="section-title">Latest Blog Posts</h2>
       <p class="section-subtitle">Tips, stories, and coffee wisdom from the Yellow Bean team.</p>
     </div>
+
     <div class="row g-4">
+
       <div class="col-lg-4 col-md-6">
-        <div class="yb-card">
-          <div class="yb-card-img" style="background:linear-gradient(135deg,#F5C518,#FDE87A);display:flex;align-items:center;justify-content:center;font-size:5rem;">☕</div>
-          <div class="yb-card-body">
-            <span class="badge-category" style="font-size:.65rem">Coffee Tips</span>
-            <h5>How to Make the Perfect Cup at Home</h5>
-            <p>Love coffee but can't always head to the café? Here are our barista-approved tips for brewing café-quality coffee right in your own kitchen.</p>
-            <div style="font-size:.78rem;color:var(--muted);margin-top:12px"><i class="bi bi-person me-1"></i>Yellow Bean Team &nbsp;·&nbsp; <i class="bi bi-calendar2 me-1"></i>October 2024</div>
+        <div class="blog-card">
+          <div class="blog-card-thumb" style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);">
+            <img src="../image/coffeetips.jpg" alt="Students studying">
+          </div>
+          <div class="blog-card-body">
+            <span class="tag-pill">New Menu</span>
+            <h5>New menu drop na ba ‘to… o prank lang? 😳</h5>
+            <p>🍔 Spaghetti Burger – carbs on carbs, why not? 😂
+🌶️🍓 Spicy Strawberry Frappe – sweet na, may thrill pa!
+Ready ka na ba sumugal… or pass muna? 🤣
+
+Happy April Fools! 🤪
+(Chill lang… di pa kami ganito ka wild 😌💛)</p>
+            <div class="blog-meta">
+              <i class="bi bi-person"></i> Yellow Bean Team
+              <span style="color:var(--border)">·</span>
+              <i class="bi bi-calendar2"></i> October 2024
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-6">
-        <div class="yb-card">
-          <div class="yb-card-img" style="background:linear-gradient(135deg,#c8f7c5,#78c850);display:flex;align-items:center;justify-content:center;font-size:5rem;">🍵</div>
-          <div class="yb-card-body">
-            <span class="badge-category" style="font-size:.65rem">Lifestyle</span>
-            <h5>Why a Cozy Café is Good for Your Mood</h5>
-            <p>Science says that warm, welcoming environments boost creativity and reduce stress. Discover why your café visits are more than just a coffee break.</p>
-            <div style="font-size:.78rem;color:var(--muted);margin-top:12px"><i class="bi bi-person me-1"></i>Yellow Bean Team &nbsp;·&nbsp; <i class="bi bi-calendar2 me-1"></i>November 2024</div>
+        <div class="blog-card">
+          <div class="blog-card-thumb" style="background:linear-gradient(135deg,#D1FAE5,#6EE7B7);">
+            <img src="../image/breakfast.jpg" alt="Students studying">
+          </div>
+          <div class="blog-card-body">
+            <span class="tag-pill">Breakfast</span>
+            <h5>YB Breakfast Special</h5>
+            <p>Spam, Egg, Cucumber, Bacon & Waffles!</p>
+            <div class="blog-meta">
+              <i class="bi bi-person"></i> Yellow Bean Team
+              <span style="color:var(--border)">·</span>
+              <i class="bi bi-calendar2"></i> November 2024
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-6">
-        <div class="yb-card">
-          <div class="yb-card-img" style="background:linear-gradient(135deg,#ffd6a5,#ff9a3c);display:flex;align-items:center;justify-content:center;font-size:5rem;">🥪</div>
-          <div class="yb-card-body">
-            <span class="badge-category" style="font-size:.65rem">Food Feature</span>
-            <h5>Our Club Sandwich: The Story Behind the Best</h5>
-            <p>Our Club Sandwich is consistently our best-selling food item. Here's how we perfected our recipe and why customers keep coming back for it.</p>
-            <div style="font-size:.78rem;color:var(--muted);margin-top:12px"><i class="bi bi-person me-1"></i>Kyra Montenegro &nbsp;·&nbsp; <i class="bi bi-calendar2 me-1"></i>December 2024</div>
+        <div class="blog-card">
+          <div class="blog-card-thumb" style="background:linear-gradient(135deg,#FEE2D5,#FDBA74);">
+            <img src="../image/crave.jpg" alt="Students studying">
+          </div>
+          <div class="blog-card-body">
+            <span class="tag-pill">Cravings</span>
+            <h5>Cravings unlocked!</h5>
+            <p>From rice meals to sandwiches, we got you. Order na bago mag-8PM! 🛵</p>
+            <div class="blog-meta">
+              <i class="bi bi-person"></i> Yellow Bean Team
+              <span style="color:var(--border)">·</span>
+              <i class="bi bi-calendar2"></i> December 2024
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-6">
-        <div class="yb-card">
-          <div class="yb-card-img" style="background:linear-gradient(135deg,#4B2E13,#7A4F2E);display:flex;align-items:center;justify-content:center;font-size:5rem;">🌟</div>
-          <div class="yb-card-body">
-            <span class="badge-category" style="font-size:.65rem">Our Journey</span>
-            <h5>1 Year of Yellow Bean: What We Learned</h5>
-            <p>On our first anniversary, we reflect on the lessons, the laughter, and the love that has shaped Yellow Bean into what it is today.</p>
-            <div style="font-size:.78rem;color:var(--muted);margin-top:12px"><i class="bi bi-person me-1"></i>Kyra Montenegro &nbsp;·&nbsp; <i class="bi bi-calendar2 me-1"></i>October 2024</div>
+        <div class="blog-card">
+          <div class="blog-card-thumb" style="background:linear-gradient(135deg,#E8D5B7,#C4965A);">
+            <img src="../image/refresh.jpg" alt="Students studying">
+          </div>
+          <div class="blog-card-body">
+            <span class="tag-pill">Refreshers</span>
+            <h5>Unveiling Yellow Bean's new Lemonade section!</h5>
+            <p>Try our Lemonade, Cucumber Lemonade, and Strawberry Lemonade — the ultimate detox drinks that refresh, rejuvenate, and keep you feeling energized all day long! 💪🏼💛</p>
+            <div class="blog-meta">
+              <i class="bi bi-person"></i> Yellow Bean Team
+              <span style="color:var(--border)">·</span>
+              <i class="bi bi-calendar2"></i> October 2024
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-6">
-        <div class="yb-card">
-          <div class="yb-card-img" style="background:linear-gradient(135deg,#fce4ec,#e91e8c);display:flex;align-items:center;justify-content:center;font-size:5rem;">🍓</div>
-          <div class="yb-card-body">
-            <span class="badge-category" style="font-size:.65rem">Drinks Guide</span>
-            <h5>Coffee vs. Non-Coffee: Find Your Yellow Bean Match</h5>
-            <p>Not a coffee drinker? No problem! Explore our full range of non-coffee options — from matcha to fruity shakes — and find your perfect Yellow Bean sip.</p>
-            <div style="font-size:.78rem;color:var(--muted);margin-top:12px"><i class="bi bi-person me-1"></i>Yellow Bean Team &nbsp;·&nbsp; <i class="bi bi-calendar2 me-1"></i>January 2025</div>
+        <div class="blog-card">
+          <div class="blog-card-thumb" style="background:linear-gradient(135deg,#FCE7F3,#F9A8D4);">
+            <img src="../image/biscoff.jpg" alt="Students studying">
+          </div>
+          <div class="blog-card-body">
+            <span class="tag-pill">New Dink!</span>
+            <h5>Biscoff Bliss</h5>
+            <p>Golden crumbles, rich espresso, and a touch of magic. ✨ Try our Biscoff Latte today at Yellow Bean! ☕</p>
+            <div class="blog-meta">
+              <i class="bi bi-person"></i> Yellow Bean Team
+              <span style="color:var(--border)">·</span>
+              <i class="bi bi-calendar2"></i> January 2025
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-6">
-        <div class="yb-card">
-          <div class="yb-card-img" style="background:linear-gradient(135deg,#e3f2fd,#42a5f5);display:flex;align-items:center;justify-content:center;font-size:5rem;">🎪</div>
-          <div class="yb-card-body">
-            <span class="badge-category" style="font-size:.65rem">Events</span>
-            <h5>Bringing Yellow Bean to Your Events</h5>
-            <p>Our event cart service is growing! Find out how to book Yellow Bean for your next school event, birthday party, or community gathering.</p>
-            <div style="font-size:.78rem;color:var(--muted);margin-top:12px"><i class="bi bi-person me-1"></i>Yellow Bean Team &nbsp;·&nbsp; <i class="bi bi-calendar2 me-1"></i>February 2025</div>
+        <div class="blog-card">
+          <div class="blog-card-thumb" style="background:linear-gradient(135deg,#DBEAFE,#93C5FD);">
+            <img src="../image/mango.jpg" alt="Students studying">
+          </div>
+          <div class="blog-card-body">
+            <span class="tag-pill">New Drink!</span>
+            <h5>Our New Drink: Mango Latte</h5>
+            <p>It may sound unusual, but one sip and you’ll be hooked 🤩. Introducing the perfect blend of tropical mango and creamy latte! 🥭☕️ Weird in the best way🥴💛</p>
+            <div class="blog-meta">
+              <i class="bi bi-person"></i> Yellow Bean Team
+              <span style="color:var(--border)">·</span>
+              <i class="bi bi-calendar2"></i> February 2025
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+<div class="section-divider"></div>
+
 <!-- CUSTOMER REVIEWS -->
-<section class="section-pad" style="background:var(--cream-dk)">
+<section class="section-pad bg-cream-dk">
   <div class="container">
+
     <div class="text-center mb-5">
-      <span class="badge-category">What They Say</span>
-      <h2 class="section-title d-block mx-auto">Customer Reviews</h2>
+      <h2 class="section-title">Customer Reviews</h2>
       <p class="section-subtitle">Real words from our wonderful customers — their smiles are our greatest reward.</p>
     </div>
 
-    <!-- Rating Summary -->
-    <div class="row justify-content-center mb-5">
-      <div class="col-lg-4 text-center">
-        <div class="yb-card p-4">
-          <div style="font-size:3.5rem;font-family:'Playfair Display',serif;color:var(--brown);font-weight:700;line-height:1">4.8</div>
-          <div class="stars mb-2">★★★★★</div>
-          <p style="color:var(--muted);font-size:.85rem;margin:0">Based on customer feedback</p>
-        </div>
-      </div>
-    </div>
+    
 
+    <!-- Review Grid -->
     <div class="row g-4">
+
       <div class="col-md-6 col-lg-4">
         <div class="review-card">
-          <div class="stars mb-2">★★★★★</div>
-          <p style="font-size:.9rem;color:var(--muted);font-style:italic;">"Best Spanish Latte in Taal! The café is so cozy and the staff are super friendly. Definitely my new go-to spot."</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"please wait for me, Biscoff Latte."</p>
+          <div class="reviewer-divider"></div>
+          <div class="d-flex align-items-center gap-3">
             <div class="reviewer-avatar">A</div>
             <div>
-              <div style="font-weight:700;font-size:.88rem;color:var(--brown)">Andrea Marasigan</div>
-              <div style="font-size:.78rem;color:var(--muted)">Regular Customer</div>
+              <div class="reviewer-name">Joanna Kathleen Almazan</div>
+              <div class="reviewer-source">via facebook</div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-md-6 col-lg-4">
         <div class="review-card">
-          <div class="stars mb-2">★★★★★</div>
-          <p style="font-size:.9rem;color:var(--muted);font-style:italic;">"The matcha latte here is honestly one of the best I've tried! And the prices are so affordable. I love this café!"</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Learning to love the little things.
+Wait for the inspirational quote sa gitna..."</p>
+          <div class="reviewer-divider"></div>
+          <div class="d-flex align-items-center gap-3">
             <div class="reviewer-avatar">J</div>
             <div>
-              <div style="font-weight:700;font-size:.88rem;color:var(--brown)">Janelle Reyes</div>
-              <div style="font-size:.78rem;color:var(--muted)">via Facebook</div>
+              <div class="reviewer-name">Monalyssa Manongsong</div>
+              <div class="reviewer-source">via Facebook</div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-md-6 col-lg-4">
         <div class="review-card">
-          <div class="stars mb-2">★★★★☆</div>
-          <p style="font-size:.9rem;color:var(--muted);font-style:italic;">"Great food and drinks! The Club Sandwich is my favorite. Would love to see more food options in the future, but overall amazing!"</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
+          <div class="review-stars">★★★★<span style="color:#ddd;">★</span></div>
+          <p class="review-text">"Great food and drinks! The Club Sandwich is my favorite. Would love to see more food options in the future, but overall amazing!"</p>
+          <div class="reviewer-divider"></div>
+          <div class="d-flex align-items-center gap-3">
             <div class="reviewer-avatar">R</div>
             <div>
-              <div style="font-weight:700;font-size:.88rem;color:var(--brown)">Rafael Delos Santos</div>
-              <div style="font-size:.78rem;color:var(--muted)">Dine-in Customer</div>
+              <div class="reviewer-name">Rafael Delos Santos</div>
+              <div class="reviewer-source">Dine-in Customer</div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-md-6 col-lg-4">
         <div class="review-card">
-          <div class="stars mb-2">★★★★★</div>
-          <p style="font-size:.9rem;color:var(--muted);font-style:italic;">"Yellow Bean made our family day at school extra special! Their event cart was a huge hit. Everyone loved the drinks!"</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Yellow Bean made our family day at school extra special! Their event cart was a huge hit. Everyone loved the drinks!"</p>
+          <div class="reviewer-divider"></div>
+          <div class="d-flex align-items-center gap-3">
             <div class="reviewer-avatar">M</div>
             <div>
-              <div style="font-weight:700;font-size:.88rem;color:var(--brown)">Ma. Clara Villegas</div>
-              <div style="font-size:.78rem;color:var(--muted)">Casa San Domenico Parent</div>
+              <div class="reviewer-name">Ma. Clara Villegas</div>
+              <div class="reviewer-source">Casa San Domenico Parent</div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-md-6 col-lg-4">
         <div class="review-card">
-          <div class="stars mb-2">★★★★★</div>
-          <p style="font-size:.9rem;color:var(--muted);font-style:italic;">"My friends and I ordered via Foodpanda and everything arrived fresh! The Caramel Macchiato did not disappoint. 10/10!"</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"My friends and I ordered via Foodpanda and everything arrived fresh! The Caramel Macchiato did not disappoint. 10/10!"</p>
+          <div class="reviewer-divider"></div>
+          <div class="d-flex align-items-center gap-3">
             <div class="reviewer-avatar">K</div>
             <div>
-              <div style="font-weight:700;font-size:.88rem;color:var(--brown)">Katrina Lim</div>
-              <div style="font-size:.78rem;color:var(--muted)">via Foodpanda</div>
+              <div class="reviewer-name">Katrina Lim</div>
+              <div class="reviewer-source">via Foodpanda</div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-md-6 col-lg-4">
         <div class="review-card">
-          <div class="stars mb-2">★★★★★</div>
-          <p style="font-size:.9rem;color:var(--muted);font-style:italic;">"So happy Yellow Bean was at the basketball games! Great coffee to fuel us between games. Support local — they deserve it!"</p>
-          <div class="d-flex align-items-center gap-3 mt-3">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"So happy Yellow Bean was at the basketball games! Great coffee to fuel us between games. Support local — they deserve it!"</p>
+          <div class="reviewer-divider"></div>
+          <div class="d-flex align-items-center gap-3">
             <div class="reviewer-avatar">D</div>
             <div>
-              <div style="font-weight:700;font-size:.88rem;color:var(--brown)">Danilo Cruz</div>
-              <div style="font-size:.78rem;color:var(--muted)">Basketball League Fan</div>
+              <div class="reviewer-name">Danilo Cruz</div>
+              <div class="reviewer-source">Basketball League Fan</div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- Leave a Review CTA -->
-    <div class="text-center mt-5 p-4" style="background:var(--white);border-radius:18px;box-shadow:var(--shadow);">
-      <h5>Share Your Yellow Bean Experience!</h5>
-      <p style="color:var(--muted);font-size:.9rem">We'd love to hear what you think. Leave us a review on our Facebook page.</p>
-      <a href="https://www.facebook.com/profile.php?id=61550706102865" 
-         target="_blank" 
+    <div class="review-cta">
+      <h5>Share Your Yellow Bean Experience</h5>
+      <p>We'd love to hear what you think. Leave us a review on our Facebook page.</p>
+      <a href="https://www.facebook.com/profile.php?id=61550706102865"
+         target="_blank"
          rel="noopener noreferrer"
-         class="btn-yb fs-5 px-5 py-3">
-        <i class="bi bi-facebook me-3"></i>Leave a Review
+         class="btn-fb">
+        <i class="bi bi-facebook"></i> Leave a Review on Facebook
       </a>
     </div>
+
   </div>
 </section>
+
 <script src="../shared-nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

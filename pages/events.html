@@ -6,142 +6,1277 @@
   <title>Events & News — Yellow Bean Café</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    :root {
+      --brown:     #3e2209;
+      --brown-mid: #6b3e1c;
+      --brown-lt:  #9a6b45;
+      --yellow:    #F5C518;
+      --yellow-lt: #fdd96b;
+      --yellow-dk: #d4a810;
+      --cream:     #FDF8F0;
+      --cream-dk:  #F5EEE0;
+      --cream-md:  #f0e8d4;
+      --white:     #ffffff;
+      --muted:     #7a6650;
+      --muted-lt:  #a89070;
+      --border:    #e4d9c4;
+      --border-dk: #d5c5a8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── BANNER ── */
+    .page-banner {
+      background: var(--brown);
+      padding: 96px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-banner-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/1813466/pexels-photo-1813466.jpeg?auto=compress&cs=tinysrgb&w=1400');
+      background-size: cover;
+      background-position: center;
+      opacity: .12;
+    }
+    .page-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 90% at 20% 50%, rgba(62,34,9,.88) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 30%, rgba(62,34,9,.75) 0%, transparent 65%),
+        rgba(62,34,9,.72);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .page-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,197,24,.35), transparent);
+      z-index: 2;
+    }
+    .banner-inner { position: relative; z-index: 3; }
+    .banner-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .banner-ornament-line {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,197,24,.5));
+    }
+    .banner-ornament-line.right {
+      background: linear-gradient(90deg, rgba(245,197,24,.5), transparent);
+    }
+    .banner-ornament-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+      opacity: .8;
+    }
+    .page-banner h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 3.1rem);
+      font-weight: 700;
+      color: var(--cream);
+      margin: 0 0 14px;
+      letter-spacing: -.02em;
+    }
+    .page-banner h1 span { color: var(--yellow); }
+    .page-banner .banner-desc {
+      color: rgba(253,248,240,.5);
+      font-size: .9rem;
+      font-weight: 300;
+      letter-spacing: .025em;
+      margin: 0 auto 24px;
+      max-width: 380px;
+      line-height: 1.7;
+    }
+    .breadcrumb-yb { justify-content: center; padding: 0; margin: 0; background: transparent; }
+    .breadcrumb-yb .breadcrumb-item a {
+      color: rgba(245,197,24,.6);
+      text-decoration: none;
+      font-size: .75rem;
+      letter-spacing: .03em;
+      transition: color .15s;
+    }
+    .breadcrumb-yb .breadcrumb-item a:hover { color: var(--yellow); }
+    .breadcrumb-yb .breadcrumb-item.active { color: rgba(253,248,240,.3); font-size: .75rem; }
+    .breadcrumb-yb .breadcrumb-item + .breadcrumb-item::before { color: rgba(253,248,240,.18); }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--brown-mid);
+      border-bottom: 1px solid rgba(0,0,0,.12);
+    }
+    .stats-strip-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide-x: 1px solid rgba(255,255,255,.1);
+    }
+    .stat-item {
+      padding: 22px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.08);
+      position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .stat-label {
+      font-size: .63rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(253,248,240,.5);
+    }
+    @media (max-width: 575px) {
+      .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+    }
+
+    /* ── PROMO STRIP ── */
+    .promo-strip {
+      background: var(--yellow);
+      border-bottom: 2px solid var(--yellow-dk);
+    }
+    .promo-strip-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: stretch;
+    }
+    .promo-strip-badge {
+      background: var(--brown);
+      color: var(--yellow);
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+    .promo-strip-content {
+      padding: 13px 24px;
+    }
+    .promo-strip-title {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin: 0 0 2px;
+    }
+    .promo-strip-sub {
+      font-size: .74rem;
+      color: rgba(62,34,9,.6);
+      margin: 0;
+    }
+    .promo-strip-cta {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    .promo-strip-cta a {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--brown);
+      text-decoration: none;
+      border: 1.5px solid rgba(62,34,9,.3);
+      border-radius: 4px;
+      padding: 6px 14px;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      transition: background .15s, border-color .15s;
+    }
+    .promo-strip-cta a:hover { background: rgba(62,34,9,.08); border-color: rgba(62,34,9,.5); }
+    @media (max-width: 640px) {
+      .promo-strip-inner { grid-template-columns: 1fr; }
+      .promo-strip-badge { padding: 10px 18px; justify-content: center; }
+      .promo-strip-cta { padding: 10px 18px; justify-content: center; }
+    }
+
+    /* ── LAYOUT HELPERS ── */
+    .section-pad { padding: 72px 0; }
+    .section-pad-sm { padding: 56px 0; }
+
+    .section-header { margin-bottom: 44px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 1px;
+      background: var(--border-dk);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--brown);
+      margin: 0 0 12px;
+      letter-spacing: -.02em;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: .87rem;
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-dk), transparent);
+      border: none;
+      margin: 0;
+    }
+
+    /* ── UPCOMING EVENT ── */
+    .event-feature {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      box-shadow: 0 2px 8px rgba(62,34,9,.05), 0 8px 32px rgba(62,34,9,.07);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .event-feature:hover {
+      box-shadow: 0 4px 16px rgba(62,34,9,.08), 0 16px 48px rgba(62,34,9,.1);
+      transform: translateY(-2px);
+    }
+    .event-feature-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 18px;
+      text-align: center;
+      background: linear-gradient(160deg, var(--cream-md), var(--cream-dk));
+      border-right: 1px solid var(--border);
+    }
+    .event-feature-day {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1;
+    }
+    .event-feature-month {
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      background: var(--brown);
+      padding: 4px 11px;
+      border-radius: 3px;
+      margin-top: 7px;
+    }
+    .event-feature-year {
+      font-size: .66rem;
+      color: var(--muted-lt);
+      margin-top: 6px;
+      letter-spacing: .04em;
+    }
+    .event-feature-body {
+      padding: 32px 38px;
+    }
+    .event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      padding: 4px 12px;
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 0 0 12px;
+      letter-spacing: -.01em;
+    }
+    .event-desc {
+      font-size: .86rem;
+      color: var(--muted);
+      line-height: 1.78;
+      max-width: 560px;
+      margin: 0 0 16px;
+    }
+    .event-details-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .event-detail-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .76rem;
+      color: var(--brown-lt);
+      font-weight: 500;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 11px;
+    }
+    .event-detail-chip i { font-size: .7rem; }
+    .event-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-event-remind {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--yellow);
+      color: var(--brown);
+      font-weight: 600;
+      font-size: .8rem;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: .01em;
+      transition: background .15s, transform .15s;
+    }
+    .btn-event-remind:hover { background: var(--yellow-lt); color: var(--brown); transform: translateY(-1px); }
+    .btn-event-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      color: var(--brown-lt);
+      font-weight: 500;
+      font-size: .8rem;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid var(--border-dk);
+      letter-spacing: .01em;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .btn-event-share:hover { background: var(--cream-dk); color: var(--brown); border-color: var(--brown-lt); }
+    .event-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .74rem;
+      color: var(--brown-lt);
+      font-weight: 500;
+    }
+    .event-meta i { font-size: .68rem; }
+
+    /* ── NOTIFY BAND ── */
+    .notify-band {
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 20px 30px;
+    }
+    .notify-band-text {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .notify-band-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--brown);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .notify-band-icon i { color: var(--yellow); font-size: .9rem; }
+    .notify-band-copy h6 {
+      font-family: 'Playfair Display', serif;
+      font-size: .9rem;
+      color: var(--brown);
+      margin: 0 0 3px;
+      font-weight: 600;
+    }
+    .notify-band-copy p {
+      font-size: .78rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .notify-band-copy a { color: var(--brown-mid); text-decoration: underline; text-underline-offset: 3px; }
+    .notify-band-copy a:hover { color: var(--brown); }
+    .notify-band-social {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      background: var(--white);
+      border: 1px solid var(--border-dk);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown-lt);
+      font-size: .9rem;
+      text-decoration: none;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .social-btn:hover { background: var(--brown); color: var(--yellow); border-color: var(--brown); }
+    @media (max-width: 600px) {
+      .notify-band { grid-template-columns: 1fr; gap: 14px; }
+      .notify-band-social { justify-content: flex-start; }
+    }
+
+    /* ── PAST EVENTS ── */
+    .past-events-list {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(62,34,9,.05), 0 8px 32px rgba(62,34,9,.07);
+    }
+    .past-event-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      transition: background .18s;
+    }
+    .past-event-row:hover { background: #fdfaf5; }
+    .past-event-row + .past-event-row {
+      border-top: 1px solid var(--border);
+    }
+    .past-event-left {
+      background: var(--cream-dk);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 32px 18px;
+    }
+    .past-event-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--brown);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .past-event-body {
+      padding: 28px 36px;
+    }
+    .past-event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .past-event-badge .badge-dot {
+      width: 3px;
+      height: 3px;
+      background: var(--border-dk);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .past-event-badge .badge-type { color: var(--brown-lt); }
+    .past-event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 0 0 10px;
+      letter-spacing: -.01em;
+    }
+    .past-event-desc {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.78;
+      max-width: 580px;
+      margin: 0 0 14px;
+    }
+    .past-event-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .highlight-tag {
+      font-size: .68rem;
+      font-weight: 600;
+      color: var(--brown-mid);
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 10px;
+      letter-spacing: .04em;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    @media (max-width: 767px) {
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: var(--cream-dk);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(62,34,9,.7) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-label {
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: .04em;
+    }
+    .gallery-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(62,34,9,.05), 0 8px 32px rgba(62,34,9,.07);
+    }
+
+    /* ── UPDATES ── */
+    .updates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(62,34,9,.05), 0 8px 32px rgba(62,34,9,.07);
+    }
+    @media (max-width: 767px) {
+      .updates-grid { grid-template-columns: 1fr; }
+    }
+    .update-item {
+      padding: 32px 30px;
+      background: var(--white);
+      transition: background .2s;
+      position: relative;
+    }
+    .update-item:hover { background: #fdfaf5; }
+    .update-accent {
+      width: 28px;
+      height: 3px;
+      background: var(--yellow);
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    .update-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--brown-lt);
+      margin-bottom: 16px;
+      transition: background .2s, color .2s;
+    }
+    .update-item:hover .update-icon {
+      background: var(--brown);
+      color: var(--yellow);
+      border-color: var(--brown);
+    }
+    .update-tag {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .update-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin: 0 0 10px;
+      line-height: 1.35;
+      letter-spacing: -.005em;
+    }
+    .update-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0 0 18px;
+    }
+    .update-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .update-date {
+      font-size: .68rem;
+      color: var(--muted-lt);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: .02em;
+    }
+    .update-link {
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--brown-lt);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: .03em;
+      transition: color .15s;
+    }
+    .update-link:hover { color: var(--brown); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 767px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 26px;
+      box-shadow: 0 1px 4px rgba(62,34,9,.04), 0 4px 16px rgba(62,34,9,.05);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .testimonial-card:hover {
+      box-shadow: 0 4px 12px rgba(62,34,9,.07), 0 12px 32px rgba(62,34,9,.09);
+      transform: translateY(-2px);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+    .testimonial-stars i { color: var(--yellow); font-size: .85rem; }
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: .92rem;
+      font-style: italic;
+      color: var(--brown);
+      line-height: 1.7;
+      margin: 0 0 20px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--yellow);
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin: 0 0 2px;
+    }
+    .testimonial-role {
+      font-size: .7rem;
+      color: var(--muted-lt);
+      margin: 0;
+    }
+    .testimonial-tag {
+      margin-left: auto;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      white-space: nowrap;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(62,34,9,.05), 0 8px 32px rgba(62,34,9,.07);
+    }
+    .faq-item {
+      border-top: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: none; }
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .faq-btn:hover { background: var(--cream); }
+    .faq-question {
+      font-family: 'Playfair Display', serif;
+      font-size: .97rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin: 0;
+    }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .15s, transform .2s;
+    }
+    .faq-icon i { font-size: .7rem; color: var(--brown-lt); transition: transform .2s; }
+    .faq-btn[aria-expanded="true"] .faq-icon {
+      background: var(--brown);
+      border-color: var(--brown);
+    }
+    .faq-btn[aria-expanded="true"] .faq-icon i {
+      color: var(--yellow);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 28px 22px 28px;
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── BOOK US ── */
+    .book-section {
+      background: var(--brown);
+      position: relative;
+      overflow: hidden;
+    }
+    .book-section-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1200');
+      background-size: cover;
+      background-position: center;
+      opacity: .07;
+    }
+    .book-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 110% at 0% 50%, rgba(62,34,9,.92) 0%, transparent 68%),
+        radial-gradient(ellipse 45% 85% at 100% 20%, rgba(62,34,9,.85) 0%, transparent 62%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .book-section::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,197,24,.22), transparent);
+      z-index: 2;
+    }
+    .book-inner {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      align-items: center;
+      gap: 56px;
+      padding: 68px 0;
+      position: relative;
+      z-index: 3;
+    }
+    @media (max-width: 768px) {
+      .book-inner { grid-template-columns: 1fr; text-align: center; gap: 32px; }
+    }
+    .book-eyebrow {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(245,197,24,.55);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .book-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      background: rgba(245,197,24,.3);
+    }
+    @media (max-width: 768px) {
+      .book-eyebrow { justify-content: center; }
+    }
+    .book-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.2vw, 2rem);
+      font-weight: 700;
+      color: var(--cream);
+      margin: 0 0 12px;
+      letter-spacing: -.02em;
+    }
+    .book-desc {
+      color: rgba(253,248,240,.45);
+      font-size: .86rem;
+      margin: 0 0 28px;
+      line-height: 1.75;
+      max-width: 440px;
+    }
+    .book-perks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    @media (max-width: 768px) {
+      .book-desc { margin-left: auto; margin-right: auto; }
+      .book-perks { justify-content: center; }
+    }
+    .book-perk {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .73rem;
+      color: rgba(253,248,240,.5);
+      font-weight: 500;
+    }
+    .book-perk i { color: var(--yellow); font-size: .65rem; }
+    .book-card {
+      background: rgba(253,248,240,.05);
+      border: 1px solid rgba(253,248,240,.1);
+      border-radius: 12px;
+      padding: 32px 28px;
+      backdrop-filter: blur(4px);
+    }
+    .book-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin: 0 0 6px;
+    }
+    .book-card-sub {
+      font-size: .78rem;
+      color: rgba(253,248,240,.4);
+      margin: 0 0 22px;
+      line-height: 1.55;
+    }
+    .book-card-items {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .book-card-items li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .8rem;
+      color: rgba(253,248,240,.55);
+    }
+    .book-card-items li i { color: var(--yellow); font-size: .72rem; }
+    .btn-book {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: var(--yellow);
+      color: var(--brown);
+      font-weight: 700;
+      font-size: .84rem;
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: .01em;
+      transition: background .15s, transform .15s;
+      width: 100%;
+    }
+    .btn-book:hover {
+      background: var(--yellow-lt);
+      color: var(--brown);
+      transform: translateY(-1px);
+    }
+    .book-card-note {
+      text-align: center;
+      font-size: .7rem;
+      color: rgba(253,248,240,.25);
+      margin: 12px 0 0;
+      line-height: 1.5;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .event-feature { grid-template-columns: 1fr; }
+      .event-feature-date {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 20px 24px;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 14px;
+      }
+      .past-event-row { grid-template-columns: 1fr; }
+      .past-event-left {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 18px 24px;
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+      .section-pad { padding: 52px 0; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .anim-fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity .5s ease, transform .5s ease;
+      }
+      .anim-fade.visible {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
+<!-- BANNER -->
 <div class="page-banner">
-  <h1>Events & News</h1>
-  <p>Stay updated on what's happening at Yellow Bean.</p>
-  <nav aria-label="breadcrumb"><ol class="breadcrumb breadcrumb-yb"><li class="breadcrumb-item"><a href="../index.html">Home</a></li><li class="breadcrumb-item active">Events & News</li></ol></nav>
+  <div class="page-banner-bg"></div>
+  <div class="banner-inner">
+    <div class="banner-ornament">
+      <div class="banner-ornament-line"></div>
+      <div class="banner-ornament-dot"></div>
+      <div class="banner-ornament-line right"></div>
+    </div>
+    <h1>Events &amp; <span>News</span></h1>
+    <p class="banner-desc">Stay updated on celebrations, community appearances, and everything happening at Yellow Bean.</p>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-yb">
+        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-item active">Events &amp; News</li>
+      </ol>
+    </nav>
+  </div>
 </div>
 
-<!-- ANNIVERSARY PROMO ALERT -->
-<div style="background:var(--yellow);padding:20px 0">
-  <div class="container text-center">
-    <h5 style="color:var(--brown);margin:0">🎉 Mark Your Calendar! Yellow Bean Anniversary Promo — <strong>October 28, 2026</strong></h5>
-    <p style="color:var(--brown-lt);margin:6px 0 0;font-size:.88rem">Exclusive promos, discounts, and surprises await! Follow us on social media to stay updated.</p>
+
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <div class="container px-0">
+    <div class="promo-strip-inner">
+      <div class="promo-strip-badge">
+        <i class="bi bi-stars"></i> Coming Soon
+      </div>
+      <div class="promo-strip-content">
+        <p class="promo-strip-title">Yellow Bean Anniversary Promo — October 28, 2026</p>
+        <p class="promo-strip-sub">Exclusive promos, discounts, and surprises await. Follow us on social media to stay updated.</p>
+      </div>
+      <div class="promo-strip-cta">
+        <a href="https://www.facebook.com/profile.php?id=61550706102865" target="_blank" rel="noopener">Learn More</a>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- UPCOMING EVENTS -->
-<section class="section-pad bg-cream">
+<section class="section-pad" style="background:var(--cream);">
   <div class="container">
-    <div class="text-center mb-5">
-      <span class="badge-category">Upcoming</span>
-      <h2 class="section-title d-block mx-auto">Upcoming Events</h2>
-    </div>
     <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="event-card mb-4">
-          <div class="event-date-block">
-            <div class="event-day">28</div>
-            <div class="event-month">Oct</div>
-            <div class="event-month" style="font-size:.65rem;opacity:.7">2026</div>
+      <div class="col-xl-9 col-lg-11">
+
+        <div class="text-center section-header anim-fade">
+          <span class="eyebrow">Calendar</span>
+          <h2 class="section-title">Upcoming Events</h2>
+          <p class="section-sub">Mark your calendar — here's what we have in store for our community.</p>
+        </div>
+
+        <div class="event-feature anim-fade">
+          <div class="event-feature-date">
+            <div class="event-feature-day">28</div>
+            <div class="event-feature-month">October</div>
+            <div class="event-feature-year">2026</div>
           </div>
-          <div class="event-body">
-            <span class="badge-category" style="font-size:.65rem">🎉 Annual Promo</span>
-            <h6>Yellow Bean Anniversary Celebration</h6>
-            <p>Every October 28, Yellow Bean celebrates another year with exclusive promos and discounts for our loyal customers. Watch our social media pages for the details!</p>
-            <div class="d-flex gap-3 mt-2" style="font-size:.8rem;color:var(--muted)">
-              <span><i class="bi bi-geo-alt me-1"></i>Yellow Bean Café, Tulo, Taal, Batangas</span>
+          <div class="event-feature-body">
+            <span class="event-badge"><i class="bi bi-award"></i> Annual Celebration</span>
+            <h3 class="event-title">Yellow Bean Anniversary Celebration</h3>
+            <p class="event-desc">Every October 28, Yellow Bean celebrates another year of serving the Batangas community with exclusive promos and heartfelt gratitude. Watch our social media for full details, surprise giveaways, and limited-time deals as the date approaches!</p>
+            <div class="event-details-row">
+              <span class="event-detail-chip"><i class="bi bi-geo-alt-fill"></i> Tulo, Taal, Batangas</span>
+              <span class="event-detail-chip"><i class="bi bi-clock"></i> All Day</span>
+              <span class="event-detail-chip"><i class="bi bi-people-fill"></i> Open to All</span>
+              <span class="event-detail-chip"><i class="bi bi-ticket-perforated"></i> Free Entry</span>
+            </div>
+            <div class="event-cta-row">
+              <a href="https://www.facebook.com/profile.php?id=61550706102865" class="btn-event-remind" target="_blank" rel="noopener"><i class="bi bi-bell"></i> Stay Updated</a>
+              <a href="#" class="btn-event-share"><i class="bi bi-share"></i> Share Event</a>
             </div>
           </div>
         </div>
-        <div class="text-center p-4" style="background:var(--cream-dk);border-radius:14px;border:2px dashed var(--cream-dk);">
-          <div style="font-size:2rem;margin-bottom:10px">📅</div>
-          <h6>No Other Upcoming Events at This Time</h6>
-          <p style="color:var(--muted);font-size:.88rem;margin:0">Follow us on Facebook and Instagram to stay updated on future events, cart appearances, and community activities!</p>
+
+        <div class="notify-band anim-fade">
+          <div class="notify-band-text">
+            <div class="notify-band-icon">
+              <i class="bi bi-megaphone-fill"></i>
+            </div>
+            <div class="notify-band-copy">
+              <h6>More Events Coming</h6>
+              <p>We're always looking for new ways to connect with the community. Follow us on <a href="https://www.facebook.com/profile.php?id=61550706102865" target="_blank" rel="noopener">Facebook</a> and Instagram to be the first to know about future events, cart appearances, and seasonal activities.</p>
+            </div>
+          </div>
+          <div class="notify-band-social">
+            <a href="https://www.facebook.com/profile.php?id=61550706102865" class="social-btn" target="_blank" rel="noopener" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-btn" title="TikTok"><i class="bi bi-tiktok"></i></a>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- PAST EVENTS -->
-<section class="section-pad" style="background:var(--cream-dk)">
+<hr class="rule"/>
+
+
+
+
+
+<hr class="rule"/>
+
+<!-- LATEST UPDATES -->
+<section class="section-pad" style="background:var(--cream);">
   <div class="container">
-    <div class="text-center mb-5">
-      <span class="badge-category">Past Events</span>
-      <h2 class="section-title d-block mx-auto">Where We've Been</h2>
-      <p class="section-subtitle">Yellow Bean in the community — serving smiles beyond our café walls.</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="event-card">
-          <div class="event-date-block" style="background:var(--brown)">
-            <div class="event-day" style="color:var(--yellow);font-size:1.4rem">🏫</div>
+    <div class="row justify-content-center">
+      <div class="col-xl-9 col-lg-11">
+
+        <div class="text-center section-header anim-fade">
+          <span class="eyebrow">Announcements</span>
+          <h2 class="section-title">Latest Updates</h2>
+          <p class="section-sub">Freshly brewed news from Yellow Bean — what's new, what's happening, and what's coming.</p>
+        </div>
+
+        <div class="updates-grid anim-fade">
+          <div class="update-item">
+            <div class="update-icon"><i class="bi bi-bag-check"></i></div>
+            <div class="update-accent"></div>
+            <span class="update-tag">Online Delivery</span>
+            <h5 class="update-title">Now Available on Foodpanda</h5>
+            <p class="update-desc">Order Yellow Bean directly from the Foodpanda app and get your favorite drinks and freshly made food delivered right to your door without leaving the comfort of home.</p>
+            <div class="update-footer">
+              <span class="update-date"><i class="bi bi-calendar2"></i> 2024</span>
+              <a href="#" class="update-link">Order Now <i class="bi bi-arrow-right"></i></a>
+            </div>
           </div>
-          <div class="event-body">
-            <span class="badge-category" style="font-size:.65rem">Community Event</span>
-            <h6>Casa San Domenico School — Family Day</h6>
-            <p>Yellow Bean has been a consistent presence at the annual Family Day of Casa San Domenico School, serving students, parents, and faculty with our signature drinks and food.</p>
-            <div style="font-size:.8rem;color:var(--muted)"><i class="bi bi-geo-alt me-1"></i>Casa San Domenico School, Batangas</div>
+          <div class="update-item">
+            <div class="update-icon"><i class="bi bi-phone"></i></div>
+            <div class="update-accent"></div>
+            <span class="update-tag">Social Media</span>
+            <h5 class="update-title">Follow Us for Daily Updates</h5>
+            <p class="update-desc">We're active on Facebook and Instagram — daily posts, promos, behind-the-scenes content, and community features. Never miss a moment from Yellow Bean.</p>
+            <div class="update-footer">
+              <span class="update-date"><i class="bi bi-calendar2"></i> Ongoing</span>
+              <a href="https://www.facebook.com/profile.php?id=61550706102865" class="update-link" target="_blank" rel="noopener">Follow Us <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="update-item">
+            <div class="update-icon"><i class="bi bi-award"></i></div>
+            <div class="update-accent"></div>
+            <span class="update-tag">Anniversary</span>
+            <h5 class="update-title">Yellow Bean Anniversary — October 28</h5>
+            <p class="update-desc">Every October 28 we celebrate our founding with exclusive customer promos, surprise giveaways, and limited-time menu specials. Stay tuned for 2026's big celebration.</p>
+            <div class="update-footer">
+              <span class="update-date"><i class="bi bi-calendar2"></i> Annual</span>
+              <a href="#upcoming" class="update-link">See Event <i class="bi bi-arrow-right"></i></a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="event-card">
-          <div class="event-date-block" style="background:var(--brown)">
-            <div class="event-day" style="color:var(--yellow);font-size:1.4rem">🏀</div>
-          </div>
-          <div class="event-body">
-            <span class="badge-category" style="font-size:.65rem">Sports Event</span>
-            <h6>Basketball League — Tulo, Taal, Batangas</h6>
-            <p>Yellow Bean has proudly set up its event cart during basketball leagues in Tulo, Taal, fueling players and spectators with energizing beverages and delicious snacks.</p>
-            <div style="font-size:.8rem;color:var(--muted)"><i class="bi bi-geo-alt me-1"></i>Tulo, Taal, Batangas</div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- NEWS / ANNOUNCEMENTS -->
-<section class="section-pad bg-cream">
-  <div class="container">
-    <div class="text-center mb-5">
-      <span class="badge-category">Announcements</span>
-      <h2 class="section-title d-block mx-auto">Latest Updates</h2>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="yb-card p-4">
-          <span class="badge-category" style="font-size:.65rem">📱 Online</span>
-          <h6 class="mt-2">Now Available on Foodpanda!</h6>
-          <p style="color:var(--muted);font-size:.88rem">You can now order Yellow Bean directly from the Foodpanda app. Get your favorite drinks and food delivered right to your door!</p>
-          <div style="font-size:.78rem;color:var(--muted)"><i class="bi bi-calendar2 me-1"></i>2024</div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="yb-card p-4">
-          <span class="badge-category" style="font-size:.65rem">📸 Social Media</span>
-          <h6 class="mt-2">Follow Us for Daily Updates</h6>
-          <p style="color:var(--muted);font-size:.88rem">We're active on Facebook and Instagram! Follow us for daily posts, promos, behind-the-scenes, and community features.</p>
-          <div style="font-size:.78rem;color:var(--muted)"><i class="bi bi-calendar2 me-1"></i>Ongoing</div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="yb-card p-4">
-          <span class="badge-category" style="font-size:.65rem">🎉 Anniversary</span>
-          <h6 class="mt-2">Yellow Bean Anniversary — October 28</h6>
-          <p style="color:var(--muted);font-size:.88rem">Every year on October 28, we celebrate our founding with exclusive customer promos. Stay tuned for 2026's big celebration!</p>
-          <div style="font-size:.78rem;color:var(--muted)"><i class="bi bi-calendar2 me-1"></i>Annual</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<hr class="rule"/>
+
+
+
+<hr class="rule"/>
+
 
 <!-- BOOK US -->
-<section class="section-pad-sm bg-brown text-center">
+<section class="book-section">
+  <div class="book-section-bg"></div>
   <div class="container">
-    <h3 style="color:var(--cream)">Want Yellow Bean at Your Event?</h3>
-    <p style="color:rgba(255,248,231,.65);max-width:520px;margin:12px auto 24px">We bring our event cart to schools, sports events, parties, and community gatherings. Inquire now!</p>
-    <a href="contact.html" class="btn-yb">Book Our Event Cart</a>
+    <div class="book-inner">
+      <div>
+        <div class="book-eyebrow">Event Cart Services</div>
+        <h3 class="book-title">Want Yellow Bean at Your Event?</h3>
+        <p class="book-desc">We bring our event cart to schools, sports events, parties, and community gatherings across Batangas. Let us fuel your guests with great drinks and food — inquire today.</p>
+        <div class="book-perks">
+          <span class="book-perk"><i class="bi bi-check-circle-fill"></i> Full Menu Available</span>
+          <span class="book-perk"><i class="bi bi-check-circle-fill"></i> Professional Setup</span>
+          <span class="book-perk"><i class="bi bi-check-circle-fill"></i> Flexible Scheduling</span>
+          <span class="book-perk"><i class="bi bi-check-circle-fill"></i> Batangas-Wide Coverage</span>
+          <span class="book-perk"><i class="bi bi-check-circle-fill"></i> All Event Sizes</span>
+          <span class="book-perk"><i class="bi bi-check-circle-fill"></i> Custom Menus</span>
+        </div>
+      </div>
+      <div class="book-card">
+        <h4 class="book-card-title">Book Our Event Cart</h4>
+        <p class="book-card-sub">Tell us about your event and we'll make it memorable.</p>
+        <ul class="book-card-items">
+          <li><i class="bi bi-check2"></i> Schools &amp; Institutions</li>
+          <li><i class="bi bi-check2"></i> Sports Tournaments</li>
+          <li><i class="bi bi-check2"></i> Birthday &amp; Private Parties</li>
+          <li><i class="bi bi-check2"></i> Community &amp; Barangay Events</li>
+          <li><i class="bi bi-check2"></i> Corporate &amp; Organizational Functions</li>
+        </ul>
+        <a href="contact.html" class="btn-book">
+          <i class="bi bi-send-fill"></i> Send an Inquiry
+        </a>
+        <p class="book-card-note">We usually respond within 24 hours via Facebook or email.</p>
+      </div>
+    </div>
   </div>
 </section>
+
 <script src="../shared-nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.anim-fade').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+    });
+  });
+</script>
 </body>
 </html>

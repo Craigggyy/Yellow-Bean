@@ -12,14 +12,19 @@
 
   <style>
     :root {
-      --yellow: #f5c518;
-      --brown: #5c3d1e;
-      --brown-lt: #8b6240;
-      --cream: #fdf6ec;
-      --cream-dk: #f3e9d8;
-      --muted: #8a7565;
-      --white: #ffffff;
-      --shadow: 0 4px 24px rgba(92,61,30,.10);
+      --yellow:     #F5C518;
+      --yellow-lt:  #fdd96b;
+      --brown:      #3e2209;
+      --brown-mid:  #6b3e1c;
+      --brown-lt:   #9a6b45;
+      --cream:      #FDF8F0;
+      --cream-dk:   #f0e8d4;
+      --cream-md:   #f5ede0;
+      --white:      #ffffff;
+      --muted:      #7a6650;
+      --muted-lt:   #a89070;
+      --border:     #e4d9c4;
+      --border-dk:  #d5c5a8;
     }
 
     * { box-sizing: border-box; }
@@ -30,10 +35,10 @@
       color: var(--brown);
     }
 
-    /* ── HERO ────────────────────────────────────────── */
+    /* ── HERO ── */
     .page-hero {
       position: relative;
-      min-height: 60vh;
+      min-height: 65vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -46,43 +51,48 @@
       position: absolute;
       inset: 0;
       background: url('https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
-      opacity: .28;
+      opacity: .22;
     }
 
     .page-hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(92,61,30,.92) 0%, rgba(92,61,30,.6) 60%, rgba(245,197,24,.25) 100%);
+      background:
+        radial-gradient(ellipse 60% 100% at 20% 50%, rgba(62,34,9,.7) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 80% at 80% 30%, rgba(107,62,28,.5) 0%, transparent 60%);
     }
 
     .page-hero-content {
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 60px 20px;
+      padding: 60px 24px;
     }
 
     .page-hero-eyebrow {
-      display: inline-block;
-      background: rgba(245,197,24,.18);
-      border: 1px solid rgba(245,197,24,.4);
-      color: var(--yellow);
-      font-size: .78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,197,24,.12);
+      border: 1px solid rgba(245,197,24,.28);
+      color: var(--yellow-lt);
+      font-size: .7rem;
       font-weight: 600;
-      letter-spacing: .14em;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      padding: 6px 18px;
+      padding: 7px 18px;
       border-radius: 999px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .page-hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
       color: var(--cream);
-      line-height: 1.1;
-      margin-bottom: 16px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      letter-spacing: -.015em;
     }
 
     .page-hero h1 em {
@@ -91,11 +101,12 @@
     }
 
     .page-hero p {
-      color: rgba(253,246,236,.72);
-      font-size: 1.1rem;
-      max-width: 520px;
+      color: rgba(253,248,240,.48);
+      font-size: 1rem;
+      max-width: 480px;
       margin: 0 auto;
       line-height: 1.7;
+      letter-spacing: .01em;
     }
 
     .hero-scroll-hint {
@@ -107,122 +118,147 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      color: rgba(253,246,236,.45);
-      font-size: .7rem;
-      letter-spacing: .1em;
+      gap: 4px;
+      color: rgba(253,248,240,.35);
+      font-size: .65rem;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
     .hero-scroll-hint span {
       width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, rgba(245,197,24,.6), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
+      height: 28px;
+      background: linear-gradient(to bottom, rgba(245,197,24,.5), transparent);
     }
 
-    @keyframes scrollPulse {
-      0%,100% { opacity: .4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.15); }
-    }
-
-    /* ── BADGE ───────────────────────────────────────── */
+    /* ── BADGE ── */
     .badge-pill {
-      display: inline-block;
-      background: rgba(245,197,24,.15);
-      border: 1px solid rgba(245,197,24,.35);
-      color: var(--brown);
-      font-size: .72rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245,197,24,.1);
+      border: 1px solid rgba(245,197,24,.25);
+      color: var(--brown-lt);
+      font-size: .65rem;
       font-weight: 700;
-      letter-spacing: .1em;
+      letter-spacing: .11em;
       text-transform: uppercase;
-      padding: 5px 16px;
+      padding: 6px 16px;
       border-radius: 999px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    /* ── SECTION BASE ────────────────────────────────── */
-    .sec { padding: 90px 0; }
-    .sec-sm { padding: 60px 0; }
+    /* ── SECTION BASE ── */
+    .sec { padding: 80px 0; }
+    .sec-sm { padding: 56px 0; }
 
     .sec-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
       line-height: 1.2;
       color: var(--brown);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      letter-spacing: -.012em;
     }
 
     .sec-sub {
       color: var(--muted);
-      font-size: 1.02rem;
+      font-size: .95rem;
       line-height: 1.75;
-      max-width: 560px;
+      max-width: 540px;
       margin: 0 auto;
     }
 
-    /* ── FEATURED STORY ──────────────────────────────── */
+    /* ── FEATURED STORY ── */
     .featured-story {
       background: var(--cream-dk);
     }
 
     .story-img-wrap {
       position: relative;
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(92,61,30,.22);
+      box-shadow: 0 12px 40px rgba(62,34,9,.12), 0 2px 8px rgba(62,34,9,.06);
     }
 
     .story-img-wrap img {
       width: 100%;
-      height: 460px;
+      height: 440px;
       object-fit: cover;
       display: block;
-      transition: transform .6s ease;
     }
-
-    .story-img-wrap:hover img { transform: scale(1.04); }
 
     .story-img-tag {
       position: absolute;
       bottom: 20px;
       left: 20px;
-      background: rgba(92,61,30,.88);
-      backdrop-filter: blur(12px);
+      background: rgba(62,34,9,.88);
+      backdrop-filter: blur(10px);
       color: var(--cream);
-      padding: 14px 20px;
-      border-radius: 14px;
-      border: 1px solid rgba(245,197,24,.25);
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(245,197,24,.2);
     }
 
-    .story-img-tag h5 { margin-bottom: 4px; font-size: .95rem; font-weight: 600; }
-    .story-img-tag small { font-size: .75rem; color: rgba(253,246,236,.7); }
+    .story-img-tag h5 {
+      margin-bottom: 3px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
 
-    .story-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3.5vw,2.6rem); margin-bottom: 16px; }
-    .story-text p { color: var(--muted); line-height: 1.8; }
+    .story-img-tag small {
+      font-size: .7rem;
+      color: rgba(253,248,240,.65);
+    }
 
-    .story-stat-row { display: flex; gap: 24px; margin-top: 32px; }
+    .story-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      margin-bottom: 14px;
+      letter-spacing: -.012em;
+    }
+
+    .story-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: .95rem;
+    }
+
+    .story-stat-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+    }
 
     .story-stat {
       flex: 1;
       background: var(--white);
-      border-radius: 14px;
-      padding: 18px 16px;
+      border-radius: 12px;
+      padding: 16px 14px;
       text-align: center;
-      box-shadow: var(--shadow);
-      transition: transform .25s;
+      box-shadow: 0 2px 12px rgba(62,34,9,.06), 0 1px 3px rgba(62,34,9,.04);
+      border: 1px solid rgba(62,34,9,.04);
     }
 
-    .story-stat:hover { transform: translateY(-4px); }
-    .story-stat .num { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--yellow); font-weight: 700; }
-    .story-stat .lbl { font-size: .75rem; color: var(--muted); margin-top: 2px; }
+    .story-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--yellow);
+      font-weight: 700;
+    }
 
-    /* ── GALLERY ─────────────────────────────────────── */
+    .story-stat .lbl {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── GALLERY ── */
     .gallery-item {
       position: relative;
-      border-radius: 18px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(92,61,30,.13);
+      box-shadow: 0 8px 28px rgba(62,34,9,.1), 0 1px 3px rgba(62,34,9,.04);
       cursor: pointer;
     }
 
@@ -231,45 +267,56 @@
       height: 300px;
       object-fit: cover;
       display: block;
-      transition: transform .55s ease;
     }
 
-    .gallery-item.tall img { height: 400px; }
-    .gallery-item.feature img { height: 440px; }
-
-    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-item.tall img { height: 380px; }
+    .gallery-item.feature img { height: 420px; }
 
     .gallery-caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 50px 20px 18px;
-      background: linear-gradient(transparent, rgba(30,14,4,.78));
-      color: white;
-      font-size: .9rem;
+      padding: 50px 22px 20px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.08) 30%, rgba(0,0,0,.48) 100%);
+      color: var(--white);
+      font-size: .95rem;
       font-weight: 500;
-      letter-spacing: .02em;
-      transition: padding .3s;
+      letter-spacing: .01em;
+      line-height: 1.5;
     }
 
-    .gallery-item:hover .gallery-caption { padding-bottom: 24px; }
+    .gallery-caption-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 3px;
+      text-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
 
-    /* ── BENTO PROFILES ──────────────────────────────── */
+    .gallery-caption-sub {
+      font-size: .8rem;
+      color: rgba(255,255,255,.8);
+      font-weight: 400;
+      letter-spacing: .01em;
+    }
+
+    /* ── BENTO PROFILES ── */
     .bento-section { background: var(--cream-dk); }
 
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 240px;
-      gap: 16px;
+      grid-auto-rows: 220px;
+      gap: 14px;
     }
 
     .bento-card {
       position: relative;
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(92,61,30,.14);
+      box-shadow: 0 6px 24px rgba(62,34,9,.1), 0 1px 3px rgba(62,34,9,.04);
       cursor: pointer;
     }
 
@@ -277,20 +324,12 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .6s ease;
     }
-
-    .bento-card:hover img { transform: scale(1.08); }
 
     .bento-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 35%, rgba(25,12,3,.82) 100%);
-      transition: background .35s;
-    }
-
-    .bento-card:hover .bento-overlay {
-      background: linear-gradient(180deg, rgba(25,12,3,.18) 0%, rgba(25,12,3,.88) 100%);
+      background: linear-gradient(180deg, transparent 35%, rgba(25,12,3,.8) 100%);
     }
 
     .bento-content {
@@ -298,206 +337,89 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 20px;
-      transform: translateY(4px);
-      transition: transform .3s;
+      padding: 18px;
     }
-
-    .bento-card:hover .bento-content { transform: translateY(0); }
 
     .bento-badge {
       display: inline-block;
       background: var(--yellow);
       color: var(--brown);
-      font-size: .65rem;
+      font-size: .6rem;
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
-      padding: 3px 12px;
+      padding: 3px 11px;
       border-radius: 999px;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .bento-content h4 {
       color: white;
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      margin-bottom: 4px;
+      font-size: 1.08rem;
+      margin-bottom: 3px;
+      font-weight: 600;
     }
 
     .bento-content p {
-      color: rgba(255,255,255,.7);
-      font-size: .78rem;
+      color: rgba(255,255,255,.65);
+      font-size: .75rem;
       line-height: 1.5;
       margin: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .35s ease, opacity .35s;
-      opacity: 0;
     }
 
-    .bento-card:hover .bento-content p {
-      max-height: 60px;
-      opacity: 1;
-    }
-
-    /* Grid placement */
     .bento-a { grid-column: span 5; grid-row: span 2; }
     .bento-b { grid-column: span 4; grid-row: span 1; }
     .bento-c { grid-column: span 3; grid-row: span 1; }
     .bento-d { grid-column: span 3; grid-row: span 1; }
     .bento-e { grid-column: span 4; grid-row: span 1; }
-    .bento-f { grid-column: span 7; grid-row: span 1; }
 
     @media (max-width: 991px) {
-      .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; }
-      .bento-a, .bento-b, .bento-c, .bento-d, .bento-e, .bento-f {
+      .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .bento-a, .bento-b, .bento-c, .bento-d, .bento-e {
         grid-column: span 1;
         grid-row: span 1;
       }
     }
 
     @media (max-width: 575px) {
-      .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+      .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
     }
 
-    /* ── DEMOGRAPHICS ────────────────────────────────── */
-    .demo-section { background: var(--brown); }
-    .demo-section .sec-title { color: var(--cream); }
-    .demo-section .sec-sub { color: rgba(253,246,236,.65); }
-
-    .demo-stat-box {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(245,197,24,.18);
-      border-radius: 16px;
-      padding: 24px 18px;
-      text-align: center;
-      transition: background .25s, border-color .25s;
-    }
-
-    .demo-stat-box:hover {
-      background: rgba(245,197,24,.1);
-      border-color: rgba(245,197,24,.4);
-    }
-
-    .demo-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: var(--yellow);
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .demo-stat-lbl {
-      font-size: .78rem;
-      color: rgba(253,246,236,.6);
-      margin-top: 6px;
-    }
-
-    .channel-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 16px;
-      padding: 28px 24px;
-    }
-
-    .channel-row { margin-bottom: 22px; }
-    .channel-row:last-child { margin-bottom: 0; }
-
-    .channel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .channel-name {
-      font-size: .88rem;
-      font-weight: 600;
-      color: var(--cream);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .channel-name i { color: var(--yellow); font-size: .95rem; }
-
-    .channel-pct { font-size: .85rem; color: rgba(253,246,236,.55); font-weight: 500; }
-
-    .channel-bar-bg {
-      background: rgba(255,255,255,.08);
-      border-radius: 999px;
-      height: 8px;
-      overflow: hidden;
-    }
-
-    .channel-bar-fill {
-      height: 100%;
-      border-radius: 999px;
-      transition: width 1.2s cubic-bezier(.4,0,.2,1);
-    }
-
-    /* ── TESTIMONIAL ROW ─────────────────────────────── */
+    /* ── TESTIMONIALS ── */
     .quote-section { background: var(--cream); }
 
-    .quote-marquee-wrap {
-      overflow: hidden;
-      position: relative;
-    }
-
-    .quote-marquee-wrap::before,
-    .quote-marquee-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 80px;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .quote-marquee-wrap::before {
-      left: 0;
-      background: linear-gradient(to right, var(--cream), transparent);
-    }
-
-    .quote-marquee-wrap::after {
-      right: 0;
-      background: linear-gradient(to left, var(--cream), transparent);
-    }
-
-    .quote-marquee {
-      display: flex;
-      gap: 20px;
-      animation: marquee 32s linear infinite;
-      width: max-content;
-    }
-
-    .quote-marquee:hover { animation-play-state: paused; }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .quotes-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
     }
 
     .quote-card {
       background: var(--white);
-      border-radius: 18px;
-      padding: 26px 28px;
-      width: 300px;
-      flex-shrink: 0;
-      box-shadow: 0 4px 20px rgba(92,61,30,.09);
-      border: 1px solid rgba(92,61,30,.06);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(62,34,9,.06), 0 1px 3px rgba(62,34,9,.04);
+      border: 1px solid rgba(62,34,9,.04);
+      transition: box-shadow .18s;
     }
 
-    .quote-stars { color: var(--yellow); font-size: .85rem; margin-bottom: 10px; }
+    .quote-card:hover {
+      box-shadow: 0 8px 24px rgba(62,34,9,.1), 0 1px 3px rgba(62,34,9,.04);
+    }
+
+    .quote-stars {
+      color: var(--yellow);
+      font-size: .8rem;
+      margin-bottom: 10px;
+    }
 
     .quote-text {
-      font-size: .88rem;
+      font-size: .85rem;
       color: var(--brown);
-      line-height: 1.65;
+      line-height: 1.7;
       font-style: italic;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .quote-author {
@@ -507,62 +429,139 @@
     }
 
     .quote-avatar {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: var(--cream-dk);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: .75rem;
+      font-size: .7rem;
       font-weight: 700;
       color: var(--brown-lt);
       flex-shrink: 0;
     }
 
-    .quote-author-name { font-size: .82rem; font-weight: 600; color: var(--brown); }
-    .quote-author-role { font-size: .72rem; color: var(--muted); }
+    .quote-author-name {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--brown);
+    }
 
-    /* ── FOOTER STRIP ────────────────────────────────── */
+    .quote-author-role {
+      font-size: .7rem;
+      color: var(--muted);
+    }
+
+    /* ── DEMOGRAPHICS ── */
+    .demo-section { background: var(--brown); }
+    .demo-section .sec-title { color: var(--cream); }
+    .demo-section .sec-sub { color: rgba(253,248,240,.55); }
+
+    .demo-stat-box {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(245,197,24,.15);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .demo-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--yellow);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .demo-stat-lbl {
+      font-size: .74rem;
+      color: rgba(253,248,240,.55);
+      margin-top: 6px;
+      letter-spacing: .02em;
+    }
+
+    .channel-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px;
+      padding: 28px 24px;
+    }
+
+    .channel-row { margin-bottom: 20px; }
+    .channel-row:last-child { margin-bottom: 0; }
+
+    .channel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .channel-name {
+      font-size: .84rem;
+      font-weight: 600;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .channel-name i {
+      color: var(--yellow);
+      font-size: .9rem;
+    }
+
+    .channel-pct {
+      font-size: .8rem;
+      color: rgba(253,248,240,.5);
+      font-weight: 500;
+    }
+
+    .channel-bar-bg {
+      background: rgba(255,255,255,.08);
+      border-radius: 999px;
+      height: 6px;
+      overflow: hidden;
+    }
+
+    .channel-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    /* ── FOOTER STRIP ── */
     .footer-strip {
       background: var(--yellow);
-      padding: 60px 0;
+      padding: 56px 0;
       text-align: center;
     }
 
     .footer-strip h3 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
       color: var(--brown);
       margin-bottom: 8px;
+      letter-spacing: -.01em;
     }
 
-    .footer-strip p { color: var(--brown-lt); font-size: .98rem; }
-
-    /* ── SCROLLED ANIMATIONS ─────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity .65s ease, transform .65s ease;
+    .footer-strip p {
+      color: var(--brown-mid);
+      font-size: .92rem;
+      letter-spacing: .01em;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .story-stat-row { flex-direction: column; }
+      .quote-card { padding: 20px; }
     }
-
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
-    .reveal-delay-3 { transition-delay: .3s; }
-    .reveal-delay-4 { transition-delay: .4s; }
   </style>
 </head>
 
 <body>
 
-<!-- ═══════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════ -->
+<!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-content">
     <div class="page-hero-eyebrow">Yellow Bean Community</div>
@@ -575,123 +574,71 @@
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════
-     INTRO NUMBERS
-════════════════════════════════════════════════════ -->
-<section class="sec-sm" style="background:var(--cream)">
-  <div class="container">
-    <div class="text-center mb-5 reveal">
-      <span class="badge-pill">Yellow Bean Community</span>
-      <h2 class="sec-title">Every Customer Has a Story</h2>
-      <p class="sec-sub">We don't just serve coffee — we serve people with different lives, routines, and moments that make our café come alive.</p>
-    </div>
-    <div class="row g-3 justify-content-center">
-      <div class="col-6 col-md-3 reveal reveal-delay-1">
-        <div style="text-align:center;padding:28px 16px;background:var(--cream-dk);border-radius:18px;box-shadow:var(--shadow)">
-          <div style="font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--yellow);font-weight:700;line-height:1">6+</div>
-          <div style="font-size:.8rem;color:var(--muted);margin-top:6px">Customer Types</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3 reveal reveal-delay-2">
-        <div style="text-align:center;padding:28px 16px;background:var(--cream-dk);border-radius:18px;box-shadow:var(--shadow)">
-          <div style="font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--yellow);font-weight:700;line-height:1">Daily</div>
-          <div style="font-size:.8rem;color:var(--muted);margin-top:6px">Regular Visitors</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3 reveal reveal-delay-3">
-        <div style="text-align:center;padding:28px 16px;background:var(--cream-dk);border-radius:18px;box-shadow:var(--shadow)">
-          <div style="font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--yellow);font-weight:700;line-height:1">4</div>
-          <div style="font-size:.8rem;color:var(--muted);margin-top:6px">Service Channels</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3 reveal reveal-delay-4">
-        <div style="text-align:center;padding:28px 16px;background:var(--cream-dk);border-radius:18px;box-shadow:var(--shadow)">
-          <div style="font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--yellow);font-weight:700;line-height:1">Local</div>
-          <div style="font-size:.8rem;color:var(--muted);margin-top:6px">Tulo, Taal Community</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-
-<!-- ═══════════════════════════════════════════════════
-     FEATURED STORY
-════════════════════════════════════════════════════ -->
+<!-- FEATURED STORY -->
 <section class="sec featured-story">
   <div class="container">
     <div class="row align-items-center g-5">
 
-      <div class="col-lg-6 reveal">
+      <div class="col-lg-6">
         <div class="story-img-wrap">
           <img src="../image/daily.jpg" alt="Daily coffee visitors at Yellow Bean">
           <div class="story-img-tag">
             <h5>Coffee Lovers</h5>
-            <small>Daily visitors &nbsp;·&nbsp; Morning routine &nbsp;·&nbsp; Regulars</small>
+            <small>Daily visitors · Morning routine · Regulars</small>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-6 story-text reveal reveal-delay-1">
+      <div class="col-lg-6 story-text">
         <span class="badge-pill">Primary Customers</span>
         <h2 class="sec-title">People Who Start Their Day With Us</h2>
         <p>These are our daily visitors — students, workers, and locals who make Yellow Bean part of their routine. They come for consistency, comfort, and the familiar warmth of a place they know.</p>
-        <div class="story-stat-row">
-          <div class="story-stat">
-            <div class="num">45%</div>
-            <div class="lbl">Dine In</div>
-          </div>
-          <div class="story-stat">
-            <div class="num">30%</div>
-            <div class="lbl">Takeout</div>
-          </div>
-          <div class="story-stat">
-            <div class="num">18%</div>
-            <div class="lbl">Delivery</div>
-          </div>
-          <div class="story-stat">
-            <div class="num">7%</div>
-            <div class="lbl">Events</div>
-          </div>
-        </div>
+        
       </div>
 
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════════
-     PHOTO GALLERY
-════════════════════════════════════════════════════ -->
+<!-- PHOTO GALLERY -->
 <section class="sec" style="background:var(--cream)">
-  <div class="container text-center mb-5 reveal">
+  <div class="container text-center mb-5">
     <span class="badge-pill">Customer Moments</span>
     <h2 class="sec-title">Inside Yellow Bean Café</h2>
   </div>
 
-  <div class="container reveal">
+  <div class="container">
     <div class="row g-3">
 
       <div class="col-md-8">
         <div class="gallery-item feature">
           <img src="../image/studentstudy.jpg" alt="Students studying">
-          <div class="gallery-caption">Students studying at Yellow Bean</div>
+          <div class="gallery-caption">
+            <div class="gallery-caption-title">Students Studying</div>
+            <div class="gallery-caption-sub">Finding focus in a welcoming space</div>
+          </div>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="row g-3">
           <div class="col-12">
-            <div class="gallery-item" style="margin-bottom:0">
-              <img src="../image/friendshanging.jpg" alt="Friends hanging out" style="height:210px">
-              <div class="gallery-caption">Friends hanging out</div>
+            <div class="gallery-item">
+              <img src="../image/friendshanging.jpg" alt="Friends hanging out" style="height:195px">
+              <div class="gallery-caption">
+                <div class="gallery-caption-title">Friends Hanging Out</div>
+                <div class="gallery-caption-sub">Moments that matter</div>
+              </div>
             </div>
           </div>
           <div class="col-12">
             <div class="gallery-item">
-              <img src="../image/familyvisits.jpg" alt="Family visits" style="height:210px">
-              <div class="gallery-caption">Family visits</div>
+              <img src="../image/familyvisits.jpg" alt="Family visits" style="height:195px">
+              <div class="gallery-caption">
+                <div class="gallery-caption-title">Family Visits</div>
+                <div class="gallery-caption-sub">Bonding over coffee</div>
+              </div>
             </div>
           </div>
         </div>
@@ -700,30 +647,39 @@
       <div class="col-md-4">
         <div class="gallery-item">
           <img src="../image/coffeebreak.jpg" alt="Coffee break moments">
-          <div class="gallery-caption">Coffee break moments</div>
+          <div class="gallery-caption">
+            <div class="gallery-caption-title">Coffee Breaks</div>
+            <div class="gallery-caption-sub">A pause in the day</div>
+          </div>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="gallery-item">
           <img src="../image/takeout.jpg" alt="Takeout customers">
-          <div class="gallery-caption">Takeout customers</div>
+          <div class="gallery-caption">
+            <div class="gallery-caption-title">Takeout Orders</div>
+            <div class="gallery-caption-sub">Quality on the go</div>
+          </div>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="gallery-item">
           <img src="../image/online.jpg" alt="Online delivery orders">
-          <div class="gallery-caption">Online delivery orders</div>
+          <div class="gallery-caption">
+            <div class="gallery-caption-title">Delivery Service</div>
+            <div class="gallery-caption-sub">Fresh to your door</div>
+          </div>
         </div>
       </div>
 
       <div class="col-12">
-        <div class="gallery-item">
-          <img src="../image/community.jpg" alt="Yellow Bean Community" style="height:380px">
+        <div class="gallery-item tall">
+          <img src="../image/community.jpg" alt="Yellow Bean Community" style="height:360px">
           <div class="gallery-caption">
-            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:4px">Yellow Bean Community</div>
-            <small style="opacity:.75">Every visit creates a memory</small>
+            <div class="gallery-caption-title">Yellow Bean Community</div>
+            <div class="gallery-caption-sub">Every visit creates a memory we cherish</div>
           </div>
         </div>
       </div>
@@ -732,21 +688,17 @@
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════════
-     WHO WE SERVE — BENTO GRID  (replaces plain cards)
-════════════════════════════════════════════════════ -->
+<!-- WHO WE SERVE — BENTO GRID -->
 <section class="sec bento-section">
-  <div class="container text-center mb-5 reveal">
+  <div class="container text-center mb-5">
     <span class="badge-pill">Customer Profiles</span>
     <h2 class="sec-title">Who We Serve</h2>
     <p class="sec-sub">Real people who make Yellow Bean Café alive every single day</p>
   </div>
 
-  <div class="container reveal">
+  <div class="container">
     <div class="bento-grid">
 
-      <!-- A: Coffee Lovers — large tall card -->
       <div class="bento-card bento-a">
         <img src="../image/coffeelovers.jpg" alt="Coffee Lovers">
         <div class="bento-overlay"></div>
@@ -757,7 +709,6 @@
         </div>
       </div>
 
-      <!-- B: Students -->
       <div class="bento-card bento-b">
         <img src="../image/youngstudents.jpg" alt="Young Students">
         <div class="bento-overlay"></div>
@@ -768,7 +719,6 @@
         </div>
       </div>
 
-      <!-- C: Families -->
       <div class="bento-card bento-c">
         <img src="../image/fam.jpg" alt="Family Customers">
         <div class="bento-overlay"></div>
@@ -779,7 +729,6 @@
         </div>
       </div>
 
-      <!-- D: Workers -->
       <div class="bento-card bento-d">
         <img src="../image/workers.jpg" alt="Workers">
         <div class="bento-overlay"></div>
@@ -790,7 +739,6 @@
         </div>
       </div>
 
-      <!-- E: Sports -->
       <div class="bento-card bento-e">
         <img src="../image/sports.jpg" alt="Sports Fans">
         <div class="bento-overlay"></div>
@@ -801,195 +749,20 @@
         </div>
       </div>
 
-      <!-- F: Delivery — wide card -->
-      <div class="bento-card bento-f">
-        <img src="../image/delivery.jpg" alt="Delivery Customers">
-        <div class="bento-overlay"></div>
-        <div class="bento-content">
-          <div class="bento-badge">Online</div>
-          <h4>Delivery Customers</h4>
-          <p>Foodpanda users enjoying café quality at home — anytime, anywhere.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════
-     CUSTOMER QUOTES — MARQUEE
-════════════════════════════════════════════════════ -->
-<section class="sec-sm quote-section">
-  <div class="container text-center mb-5 reveal">
-    <span class="badge-pill">What They Say</span>
-    <h2 class="sec-title">Voices from Our Community</h2>
-  </div>
 
-  <div class="quote-marquee-wrap">
-    <div class="quote-marquee">
-
-      <!-- Set 1 -->
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"My morning doesn't start without a cup from Yellow Bean. It's the one constant in my routine."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">JR</div>
-          <div>
-            <div class="quote-author-name">Jay R.</div>
-            <div class="quote-author-role">Daily Regular</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"Best study spot in Taal. The WiFi's good, the coffee's better, and the vibe keeps me focused."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">AM</div>
-          <div>
-            <div class="quote-author-name">Andrea M.</div>
-            <div class="quote-author-role">College Student</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"We bring the whole family every Sunday. The kids love it, and so do we. Real community feel."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">MS</div>
-          <div>
-            <div class="quote-author-name">Maria S.</div>
-            <div class="quote-author-role">Family Customer</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"We hold quick team meetings here. The calm space and great coffee make all the difference."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">RC</div>
-          <div>
-            <div class="quote-author-name">Rico C.</div>
-            <div class="quote-author-role">Local Professional</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"Order through Foodpanda and it always arrives fresh and on time. Yellow Bean delivery never disappoints."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">LT</div>
-          <div>
-            <div class="quote-author-name">Liz T.</div>
-            <div class="quote-author-role">Delivery Customer</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"Celebrated my birthday here last year and the staff made it so special. We'll be back every year!"</p>
-        <div class="quote-author">
-          <div class="quote-avatar">DN</div>
-          <div>
-            <div class="quote-author-name">Diane N.</div>
-            <div class="quote-author-role">Event Customer</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Set 2 (duplicate for seamless loop) -->
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"My morning doesn't start without a cup from Yellow Bean. It's the one constant in my routine."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">JR</div>
-          <div>
-            <div class="quote-author-name">Jay R.</div>
-            <div class="quote-author-role">Daily Regular</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"Best study spot in Taal. The WiFi's good, the coffee's better, and the vibe keeps me focused."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">AM</div>
-          <div>
-            <div class="quote-author-name">Andrea M.</div>
-            <div class="quote-author-role">College Student</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"We bring the whole family every Sunday. The kids love it, and so do we. Real community feel."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">MS</div>
-          <div>
-            <div class="quote-author-name">Maria S.</div>
-            <div class="quote-author-role">Family Customer</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"We hold quick team meetings here. The calm space and great coffee make all the difference."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">RC</div>
-          <div>
-            <div class="quote-author-name">Rico C.</div>
-            <div class="quote-author-role">Local Professional</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"Order through Foodpanda and it always arrives fresh and on time. Yellow Bean delivery never disappoints."</p>
-        <div class="quote-author">
-          <div class="quote-avatar">LT</div>
-          <div>
-            <div class="quote-author-name">Liz T.</div>
-            <div class="quote-author-role">Delivery Customer</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="quote-text">"Celebrated my birthday here last year and the staff made it so special. We'll be back every year!"</p>
-        <div class="quote-author">
-          <div class="quote-avatar">DN</div>
-          <div>
-            <div class="quote-author-name">Diane N.</div>
-            <div class="quote-author-role">Event Customer</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════
-     DEMOGRAPHICS
-════════════════════════════════════════════════════ -->
+<!-- DEMOGRAPHICS -->
 <section class="sec demo-section">
   <div class="container">
     <div class="row align-items-center g-5">
 
-      <div class="col-lg-6 reveal">
-        <span class="badge-pill" style="background:rgba(245,197,24,.18);border-color:rgba(245,197,24,.4);color:var(--yellow)">Our Market</span>
-        <h2 class="sec-title mt-2">Who Visits Yellow Bean</h2>
+      <div class="col-lg-6">
+        <span class="badge-pill" style="background:rgba(245,197,24,.12);border-color:rgba(245,197,24,.28);color:var(--yellow-lt)">Our Market</span>
+        <h2 class="sec-title mt-3">Who Visits Yellow Bean</h2>
         <p class="sec-sub" style="margin:0">
           Yellow Bean primarily serves Tulo, Taal, Batangas and surrounding communities.
           Our market spans students and young adults to working professionals and families.
@@ -1022,9 +795,9 @@
         </div>
       </div>
 
-      <div class="col-lg-6 reveal reveal-delay-2">
+      <div class="col-lg-6">
         <div class="channel-card">
-          <h6 style="color:var(--yellow);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:24px">Customer Channels</h6>
+          <h6 style="color:var(--yellow);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:24px">Customer Channels</h6>
 
           <div class="channel-row">
             <div class="channel-header">
@@ -1073,10 +846,7 @@
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════════
-     FOOTER STRIP
-════════════════════════════════════════════════════ -->
+<!-- FOOTER STRIP -->
 <div class="footer-strip">
   <div class="container">
     <h3>You Are the Heart of Yellow Bean</h3>
@@ -1084,23 +854,8 @@
   </div>
 </div>
 
-
 <script src="../shared-nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-  /* Scroll reveal */
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
