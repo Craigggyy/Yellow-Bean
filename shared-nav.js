@@ -49,11 +49,33 @@
           <div class="footer-brand">☕ Yellow Bean</div>
           <div class="footer-tagline mb-3">Where every sip is a ray of sunshine!</div>
           <p>A cozy café in Taal, Batangas serving high-quality coffee and delicious food at affordable prices. Est. October 2023.</p>
-          <div class="mt-3">
-            <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="social-icon"><i class="bi bi-tiktok"></i></a>
-          </div>
+          <div class="mt-3 d-flex flex-wrap gap-2">
+
+          <a href="https://www.facebook.com/profile.php?id=61550706102865"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn-yb px-4 py-2"
+             style="font-size:1rem;">
+            <i class="bi bi-facebook me-2"></i>Facebook
+          </a>
+
+          <a href="https://www.instagram.com/_yellow.bean/?hl=en"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn-yb px-4 py-2"
+             style="font-size:1rem;">
+            <i class="bi bi-instagram me-2"></i>Instagram
+          </a>
+
+          <a href="https://www.foodpanda.ph/restaurant/bqa2/yellow-bean-taal"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn-yb px-4 py-2"
+             style="font-size:1rem;">
+            🛵 Order on Foodpanda
+          </a>
+
+        </div>
         </div>
         <div class="col-lg-2 col-md-6">
           <h5>Navigate</h5>
