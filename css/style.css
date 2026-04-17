@@ -610,3 +610,4 @@ footer a:hover { color: var(--yellow); }
 @media (max-width: 576px) {
   .navbar-yb .navbar-brand { font-size: 1.3rem; }
 }
+
