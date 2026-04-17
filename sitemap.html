@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Site Map — Yellow Bean Café</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .sitemap-group { background:var(--white);border-radius:16px;padding:28px;box-shadow:var(--shadow);margin-bottom:24px; }
+    .sitemap-group h5 { color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:10px;margin-bottom:18px;font-size:1rem;font-family:'DM Sans',sans-serif;font-weight:700;letter-spacing:.3px; }
+    .sitemap-link { display:flex;align-items:center;gap:10px;color:var(--brown);padding:8px 0;border-bottom:1px solid var(--cream-dk);font-size:.9rem;text-decoration:none;transition:color .2s; }
+    .sitemap-link:hover { color:var(--yellow); }
+    .sitemap-link:last-child { border-bottom:none; }
+    .sitemap-sub { padding-left:20px; }
+    .sitemap-sub .sitemap-link { color:var(--muted);font-size:.85rem; }
+    .sitemap-sub .sitemap-link:hover { color:var(--yellow); }
+  </style>
+</head>
+<body>
+<script src="../shared-nav.js"></script>
+
+<div class="page-banner">
+  <h1>Site Map</h1>
+  <p>An overview of all pages on the Yellow Bean website.</p>
+  <nav aria-label="breadcrumb"><ol class="breadcrumb breadcrumb-yb"><li class="breadcrumb-item"><a href="../index.html">Home</a></li><li class="breadcrumb-item active">Site Map</li></ol></nav>
+</div>
+
+<section class="section-pad bg-cream">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="badge-category">Navigation</span>
+      <h2 class="section-title d-block mx-auto">All Pages</h2>
+      <p class="section-subtitle">Find any page on the Yellow Bean website quickly and easily.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="sitemap-group">
+          <h5><i class="bi bi-house me-2 text-yellow"></i>Main Pages</h5>
+          <a href="../splash.html" class="sitemap-link"><i class="bi bi-stars text-yellow"></i>Splash / Welcome Page</a>
+          <a href="../index.html" class="sitemap-link"><i class="bi bi-house text-yellow"></i>Home</a>
+          <a href="about.html" class="sitemap-link"><i class="bi bi-info-circle text-yellow"></i>About the Company</a>
+          <div class="sitemap-sub">
+            <a href="about.html#mission" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Mission & Vision</a>
+            <a href="about.html#goals" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Goals & Objectives</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="sitemap-group">
+          <h5><i class="bi bi-cup-hot me-2 text-yellow"></i>Products & Services</h5>
+          <a href="menu.html" class="sitemap-link"><i class="bi bi-journal-text text-yellow"></i>Menu</a>
+          <div class="sitemap-sub">
+            <a href="menu.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Coffee</a>
+            <a href="menu.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Non-Coffee</a>
+            <a href="menu.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Food</a>
+            <a href="menu.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Pastries</a>
+            <a href="menu.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Shakes & Fruity</a>
+          </div>
+          <a href="services.html" class="sitemap-link"><i class="bi bi-grid text-yellow"></i>Services</a>
+          <div class="sitemap-sub">
+            <a href="services.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Dine In</a>
+            <a href="services.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Takeout</a>
+            <a href="services.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Delivery</a>
+            <a href="services.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Event Cart Packages</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="sitemap-group">
+          <h5><i class="bi bi-people me-2 text-yellow"></i>People & Community</h5>
+          <a href="personnel.html" class="sitemap-link"><i class="bi bi-person-badge text-yellow"></i>Personnel</a>
+          <div class="sitemap-sub">
+            <a href="personnel.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Founder & Owner</a>
+            <a href="personnel.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>All-Around Staff</a>
+            <a href="personnel.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Full Team (12 Members)</a>
+          </div>
+          <a href="customers.html" class="sitemap-link"><i class="bi bi-heart text-yellow"></i>Our Customers</a>
+          <a href="careers.html" class="sitemap-link"><i class="bi bi-briefcase text-yellow"></i>Careers</a>
+          <div class="sitemap-sub">
+            <a href="careers.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Open Positions</a>
+            <a href="careers.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Apply Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="sitemap-group">
+          <h5><i class="bi bi-newspaper me-2 text-yellow"></i>Content & Media</h5>
+          <a href="events.html" class="sitemap-link"><i class="bi bi-calendar-event text-yellow"></i>Events & News</a>
+          <div class="sitemap-sub">
+            <a href="events.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Upcoming Events</a>
+            <a href="events.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Past Events</a>
+            <a href="events.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Announcements</a>
+          </div>
+          <a href="blog.html" class="sitemap-link"><i class="bi bi-chat-quote text-yellow"></i>Blog & Reviews</a>
+          <div class="sitemap-sub">
+            <a href="blog.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Blog Posts</a>
+            <a href="blog.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Customer Reviews</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="sitemap-group">
+          <h5><i class="bi bi-envelope me-2 text-yellow"></i>Connect With Us</h5>
+          <a href="contact.html" class="sitemap-link"><i class="bi bi-geo-alt text-yellow"></i>Contact Us</a>
+          <div class="sitemap-sub">
+            <a href="contact.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Location & Map</a>
+            <a href="contact.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Send a Message</a>
+            <a href="contact.html" class="sitemap-link"><i class="bi bi-chevron-right text-yellow" style="font-size:.7rem"></i>Book Event Cart</a>
+          </div>
+          <a href="sitemap.html" class="sitemap-link"><i class="bi bi-diagram-3 text-yellow"></i>Site Map</a>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="sitemap-group">
+          <h5><i class="bi bi-link-45deg me-2 text-yellow"></i>External Links</h5>
+          <a href="#" class="sitemap-link" target="_blank"><i class="bi bi-facebook text-yellow"></i>Facebook Page</a>
+          <a href="#" class="sitemap-link" target="_blank"><i class="bi bi-instagram text-yellow"></i>Instagram</a>
+          <a href="#" class="sitemap-link" target="_blank"><i class="bi bi-tiktok text-yellow"></i>TikTok</a>
+          <a href="#" class="sitemap-link" target="_blank"><i class="bi bi-bag text-yellow"></i>Foodpanda Listing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
