@@ -22,14 +22,9 @@
       <div class="collapse navbar-collapse" id="navMain">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li class="nav-item"><a class="nav-link" href="${base}index.html">Home</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="${base}pages/about.html">Our Story</a></li>
-              <li><a class="dropdown-item" href="${base}pages/about.html#mission">Mission & Vision</a></li>
-              <li><a class="dropdown-item" href="${base}pages/about.html#goals">Goals & Objectives</a></li>
-            </ul>
-          </li>
+          <li class="nav-item">
+  <a class="nav-link" href="${base}pages/about.html">About</a>
+</li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/menu.html">Menu</a></li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/services.html">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/personnel.html">Our Team</a></li>
@@ -39,7 +34,6 @@
               <li><a class="dropdown-item" href="${base}pages/events.html">Events & News</a></li>
               <li><a class="dropdown-item" href="${base}pages/blog.html">Blog & Reviews</a></li>
               <li><a class="dropdown-item" href="${base}pages/customers.html">Our Customers</a></li>
-              <li><a class="dropdown-item" href="${base}pages/careers.html">Careers</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/contact.html">Contact Us</a></li>
@@ -78,7 +72,6 @@
             <li><a href="${base}pages/events.html">Events & News</a></li>
             <li><a href="${base}pages/blog.html">Blog & Reviews</a></li>
             <li><a href="${base}pages/customers.html">Customers</a></li>
-            <li><a href="${base}pages/careers.html">Careers</a></li>
             <li><a href="${base}pages/contact.html">Contact Us</a></li>
           </ul>
         </div>
