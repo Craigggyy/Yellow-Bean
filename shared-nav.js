@@ -38,7 +38,6 @@
               <li><a class="dropdown-item" href="${base}pages/events.html">Events & News</a></li>
               <li><a class="dropdown-item" href="${base}pages/blog.html">Blog & Reviews</a></li>
               <li><a class="dropdown-item" href="${base}pages/customers.html">Our Customers</a></li>
-              <li><a class="dropdown-item" href="${base}pages/careers.html">Careers</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/contact.html">Contact Us</a></li>
@@ -77,7 +76,6 @@
             <li><a href="${base}pages/events.html">Events & News</a></li>
             <li><a href="${base}pages/blog.html">Blog & Reviews</a></li>
             <li><a href="${base}pages/customers.html">Customers</a></li>
-            <li><a href="${base}pages/careers.html">Careers</a></li>
             <li><a href="${base}pages/contact.html">Contact Us</a></li>
           </ul>
         </div>
