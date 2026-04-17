@@ -3,949 +3,1125 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Our Team — Yellow Bean Café</title>
+  <title>Events & News — Yellow Bean Café</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
   <link rel="stylesheet" href="../css/style.css"/>
 </head>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --yellow: #F5C518;
+    --yellow-dark: #D4A012;
+    --yellow-light: #FFF3B0;
+    --brown: #3B2314;
+    --brown-mid: #6B3D2E;
+    --brown-light: #8B5E3C;
+    --cream: #FDF6E3;
+    --cream-dark: #F0E4C4;
+    --text-dark: #1A0F08;
+    --text-mid: #5C3D2E;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  
+
+  /* MENU HERO */
+  .menu-hero {
+    padding: 7rem 5rem 3rem;
+    background: var(--brown);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .menu-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F5C518' fill-opacity='0.04'%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .menu-hero-inner { position: relative; z-index: 2; }
+  .menu-label {
+    font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--yellow); margin-bottom: 1rem;
+  }
+  .menu-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900; color: var(--cream); line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .menu-hero h1 span { color: var(--yellow); }
+  .menu-hero p {
+    font-size: 1rem; color: rgba(253,246,227,0.65);
+    font-weight: 300; max-width: 500px; margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  /* TABS */
+  .tab-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 5rem 3rem;
+    background: var(--brown);
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid rgba(245,197,24,0.3);
+    background: transparent;
+    color: rgba(253,246,227,0.6);
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .tab-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+  .tab-btn.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--brown);
+    font-weight: 700;
+  }
+
+  /* WAVE */
+  .wave-top { height: 60px; background: var(--brown); position: relative; }
+  .wave-top svg { position: absolute; bottom: 0; width: 100%; height: 100%; }
+
+  /* MENU CONTENT */
+  .menu-body { padding: 3rem 5rem 5rem; background: var(--cream); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* FEATURED ITEM */
+  .featured-item {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 20px 60px rgba(107,61,46,0.15);
+    min-height: 280px;
+  }
+  .featured-img {
+    background: linear-gradient(135deg, var(--brown-mid), var(--brown));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem; position: relative; overflow: hidden;
+  }
+  .featured-img::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(245,197,24,0.15), transparent 60%);
+  }
+  .featured-content {
+    background: var(--brown); padding: 2.5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    color: var(--cream);
+  }
+  .featured-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--yellow); color: var(--brown);
+    padding: 0.3rem 0.85rem; border-radius: 50px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 1rem; align-self: flex-start;
+  }
+  .featured-name {
+    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 0.75rem; line-height: 1.2;
+  }
+  .featured-desc {
+    font-size: 0.88rem; color: rgba(253,246,227,0.65); line-height: 1.7;
+    font-weight: 300; margin-bottom: 1.5rem;
+  }
+  .featured-price {
+    font-size: 2.2rem; font-weight: 700; color: var(--yellow);
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* SECTION TITLE */
+  .menu-section-title {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    font-weight: 700; color: var(--brown); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .menu-section-title::after {
+    content: ''; flex: 1; height: 1px; background: rgba(107,61,46,0.2);
+  }
+
+  /* SIZES TABLE HEADER */
+  .size-note {
+    font-size: 0.75rem; color: var(--text-mid); font-weight: 400;
+    margin-left: 0.5rem; font-family: 'DM Sans', sans-serif;
+  }
+
+  /* MENU GRID */
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; margin-bottom: 2.5rem;
+  }
+  .menu-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    border: 1px solid rgba(107,61,46,0.08); transition: all 0.35s ease;
+    position: relative;
+  }
+  .menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(107,61,46,0.16);
+    border-color: var(--yellow);
+  }
+  .menu-card-img {
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative; overflow: hidden;
+    transition: transform 0.4s ease;
+  }
+  .menu-card:hover .menu-card-img { transform: scale(1.06); }
+  .bestseller-tag {
+    position: absolute; top: 0.6rem; left: 0.6rem;
+    background: var(--yellow); color: var(--brown);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.2rem 0.55rem;
+    border-radius: 50px; z-index: 5;
+  }
+  .noncoffee-tag {
+    position: absolute; top: 0.6rem; right: 0.6rem;
+    background: #78c850; color: white;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 0.2rem 0.5rem;
+    border-radius: 50px; z-index: 5;
+  }
+  .menu-card-body { padding: 1.1rem; }
+  .menu-card-name {
+    font-family: 'Playfair Display', serif; font-size: 1rem;
+    font-weight: 700; color: var(--brown); margin-bottom: 0.35rem;
+  }
+  .menu-card-desc {
+    font-size: 0.78rem; color: var(--text-mid); line-height: 1.5;
+    font-weight: 300; margin-bottom: 0.9rem;
+  }
+  .menu-card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .price-group { display: flex; gap: 0.75rem; align-items: baseline; }
+  .price-label { font-size: 0.65rem; color: rgba(107,61,46,0.5); }
+  .menu-price {
+    font-size: 1.1rem; font-weight: 700; color: var(--brown);
+    font-family: 'Playfair Display', serif;
+  }
+  .price-sm { font-size: 0.9rem; color: var(--brown-mid); }
+
+  /* LIST ROW (food/snacks) */
+  .menu-list { display: flex; flex-direction: column; }
+  .menu-list-item {
+    display: flex; align-items: center; gap: 1.25rem;
+    padding: 1.1rem 1.25rem; border-bottom: 1px solid rgba(107,61,46,0.07);
+    transition: background 0.2s; border-radius: 8px;
+  }
+  .menu-list-item:hover { background: rgba(245,197,24,0.06); }
+  .menu-list-emoji { font-size: 2rem; width: 44px; text-align: center; flex-shrink: 0; }
+  .menu-list-info { flex: 1; }
+  .menu-list-name {
+    font-family: 'Playfair Display', serif; font-size: 0.98rem;
+    font-weight: 700; color: var(--brown); margin-bottom: 0.15rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .menu-list-desc { font-size: 0.78rem; color: var(--text-mid); font-weight: 300; }
+  .menu-list-price {
+    font-size: 1.05rem; font-weight: 700; color: var(--brown-mid);
+    font-family: 'Playfair Display', serif; white-space: nowrap;
+  }
+  .bs-pill {
+    background: var(--yellow); color: var(--brown);
+    font-size: 0.58rem; font-weight: 700; padding: 0.15rem 0.45rem;
+    border-radius: 50px; text-transform: uppercase; letter-spacing: 0.07em;
+  }
+  .nc-pill {
+    background: #78c850; color: white;
+    font-size: 0.58rem; font-weight: 700; padding: 0.15rem 0.45rem;
+    border-radius: 50px; text-transform: uppercase; letter-spacing: 0.07em;
+  }
+
+  /* ADDON NOTE */
+  .addon-note {
+    background: rgba(245,197,24,0.12); border-radius: 12px;
+    padding: 0.75rem 1.25rem; margin-top: 0.75rem;
+    font-size: 0.8rem; color: var(--brown-mid); font-weight: 500;
+  }
+
+  /* PACKAGES */
+  .pkg-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; margin-bottom: 2.5rem; }
+
+  /* FOOTER */
+  .menu-footer {
+    background: var(--brown); padding: 2rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    font-weight: 900; color: var(--yellow); text-decoration: none;
+  }
+  .footer-logo span { color: var(--cream); }
+  .footer-copy { font-size: 0.8rem; color: rgba(253,246,227,0.4); }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a { font-size: 0.8rem; color: rgba(253,246,227,0.5); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--yellow); }
+
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .menu-hero, .menu-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .tab-bar { padding: 0 1.5rem 2rem; }
+    .featured-item { grid-template-columns: 1fr; }
+    .featured-img { min-height: 180px; }
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .pkg-grid { grid-template-columns: 1fr; }
+    .menu-footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+  }
+  @media (max-width: 600px) {
+    .menu-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
 <body>
 
-<div class="container">
 
-  <!-- ── Category Tabs ── -->
-  <ul class="nav menu-tabs justify-content-center mb-5 flex-wrap" id="menuTabs" role="tablist">
-    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all">☕ All Items</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#hot">🔥 Hot Blends</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#iced">🧊 Iced Blends</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#fruitsodas">🍹 Fruit Sodas</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#frappes">🥤 Frappes</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#snacks">🍟 Snacks</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#rice">🍚 Rice Meals</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#alldaybfast">🍳 All Day Bfast</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#lemon">🍋 Lemon Section</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#waffles">🧇 Waffles</button></li>
-  </ul>
 
-  <div class="tab-content">
-
-    <!-- ══════════════════════════════════════════
-         ALL ITEMS TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade show active" id="all">
-      <div class="row g-4">
-
-        <!-- ── HOT BLENDS ── -->
-        <div class="col-12"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🔥 Hot Blends</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d1b00,#5c3317)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Hot Blends</span>
-              <h6>Americano</h6>
-              <p>Bold espresso shots diluted with hot water — clean and strong.</p>
-              <div class="menu-price">₱90</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#4B2E13,#a87040)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Hot Blends</span>
-              <h6>Cafe Latte</h6>
-              <p>Smooth espresso with velvety steamed milk — a timeless classic.</p>
-              <div class="menu-price">₱100</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#4B2E13,#c07830)"><span>☕</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Hot Blends</span>
-              <h6>Caramel Macchiato</h6>
-              <p>Rich espresso with steamed milk and a golden caramel drizzle.</p>
-              <div class="menu-price">₱120</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3E1F00,#7A4F2E)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Hot Blends</span>
-              <h6>Mocha Latte</h6>
-              <p>Espresso blended with rich chocolate and creamy steamed milk.</p>
-              <div class="menu-price">₱120</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c8f7c5,#78c850)"><span>🍵</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Hot Blends · Non-Coffee</span>
-              <h6>Matcha Latte</h6>
-              <p>Smooth Japanese matcha blended with fresh creamy milk.</p>
-              <div class="menu-price">₱120</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d3a00,#5c7a17)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Hot Blends</span>
-              <h6>Matcha Espresso</h6>
-              <p>Bold espresso shot poured over vibrant, earthy matcha milk.</p>
-              <div class="menu-price">₱150</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#8B4513,#D2691E)"><span>🍫</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Hot Blends</span>
-              <h6>Choco Dream</h6>
-              <p>Rich, velvety chocolate drink — warm and deeply satisfying.</p>
-              <div class="menu-price">₱95</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── ICED BLENDS ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🧊 Iced Blends</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#1a3a5c,#3a7ab5)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Iced Americano</h6>
-              <p>Chilled espresso over ice — refreshingly bold and clean.</p>
-              <div class="menu-price">₱95 / ₱120</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3a1a00,#7a4a20)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Iced Cafe Latte</h6>
-              <p>Espresso and cold milk over ice — smooth and satisfying.</p>
-              <div class="menu-price">₱105 / ₱130</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#5c3000,#c07030)"><span>☕</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Iced Caramel Macchiato</h6>
-              <p>Layered espresso, milk, and caramel drizzle over ice.</p>
-              <div class="menu-price">₱120 / ₱150</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#1a3d00,#4a8a20)"><span>🍵</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends · Non-Coffee</span>
-              <h6>Iced Matcha Latte</h6>
-              <p>Vibrant matcha poured over ice and creamy cold milk.</p>
-              <div class="menu-price">₱130 / ₱160</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d3a00,#5c7a17)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Matcha Espresso</h6>
-              <p>Espresso shot over iced matcha milk — energizing fusion.</p>
-              <div class="menu-price">₱135 / ₱160</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c0a080,#f5c518)"><span>☕</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Spanish Latte</h6>
-              <p>Sweet condensed milk and bold espresso poured over ice.</p>
-              <div class="menu-price">₱115 / ₱140</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#4a1a00,#9a3820)"><span>🍫</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Choco Dream</h6>
-              <p>Iced rich chocolate blend — cool, creamy, and indulgent.</p>
-              <div class="menu-price">₱100 / ₱125</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3b1a5a,#7a3ab0)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Blueberry Dream</h6>
-              <p>Espresso meets sweet blueberry in a refreshing iced blend.</p>
-              <div class="menu-price">₱100 / ₱125</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#1a4a2a,#3a9a5a)"><span>🍮</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Coffee Jelly</h6>
-              <p>Iced latte topped with silky coffee jelly cubes — fun and unique.</p>
-              <div class="menu-price">₱100 / ₱125</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#8B0000,#cc3333)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Red Forest</h6>
-              <p>Striking red velvet-inspired iced blend with a creamy finish.</p>
-              <div class="menu-price">₱150 / ₱175</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d1b4a,#6a3d99)"><span>☕</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Biscoff Latte</h6>
-              <p>Creamy espresso latte swirled with spiced Biscoff cookie spread.</p>
-              <div class="menu-price">₱150 / ₱175</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#003a4a,#0077aa)"><span>☕</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Iced Blends</span>
-              <h6>Ube Latte</h6>
-              <p>Vibrant purple ube blended with espresso and iced milk.</p>
-              <div class="menu-price">₱115 / ₱140</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── FRUIT SODAS ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🍹 Fruit Sodas</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)"><span>🍓</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Fruit Sodas</span>
-              <h6>Strawberry Soda</h6>
-              <p>Fizzy strawberry soda — sweet, tangy, and refreshingly cold.</p>
-              <div class="menu-price">₱55 / ₱65</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fffde7,#f9a825)"><span>🥝</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Fruit Sodas</span>
-              <h6>Kiwi Soda</h6>
-              <p>Bright and tangy kiwi soda — tropical and effervescent.</p>
-              <div class="menu-price">₱55 / ₱65</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8f5e9,#43a047)"><span>🍏</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Fruit Sodas</span>
-              <h6>Green Apple Soda</h6>
-              <p>Crisp and zesty green apple with a sparkling fizz.</p>
-              <div class="menu-price">₱55 / ₱65</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e0f7fa,#26c6da)"><span>🍈</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Fruit Sodas</span>
-              <h6>Lychee Soda</h6>
-              <p>Delicately sweet lychee paired with light, bubbly soda water.</p>
-              <div class="menu-price">₱55 / ₱65</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e53935)"><span>🍉</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Fruit Sodas</span>
-              <h6>Watermelon Soda</h6>
-              <p>Juicy, summery watermelon soda — sweet and super refreshing.</p>
-              <div class="menu-price">₱55 / ₱65</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8eaf6,#5c6bc0)"><span>🫐</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Fruit Sodas</span>
-              <h6>Blueberry Soda</h6>
-              <p>Fizzy blueberry soda — light, vibrant, and energizing.</p>
-              <div class="menu-price">₱55 / ₱65</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Add-ons note -->
-        <div class="col-12">
-          <div class="p-3" style="background:var(--cream-dk);border-radius:12px;font-size:.85rem;color:var(--muted)">
-            🧋 <strong>Add-ons:</strong> Nata ₱10 &nbsp;|&nbsp; Lychee Popping Boba ₱10 &nbsp;|&nbsp; Strawberry Popping Boba ₱10
-          </div>
-        </div>
-
-        <!-- ── FRAPPES ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🥤 Frappes</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c8f7c5,#3d8b37)"><span>🍵</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span>
-              <h6>Matcha Frappe</h6>
-              <p>Blended matcha frappe — icy, creamy, and earthy.</p>
-              <div class="menu-price">₱145 / ₱170</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3a1a00,#8a4010)"><span>☕</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Frappes</span>
-              <h6>Java Chip Frappe</h6>
-              <p>Blended espresso frappe loaded with chocolate chips.</p>
-              <div class="menu-price">₱90 / ₱115</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#8B0000,#cc3333)"><span>🍰</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span>
-              <h6>Red Velvet Frappe</h6>
-              <p>Velvety red velvet blended with cream — rich and gorgeous.</p>
-              <div class="menu-price">₱110 / ₱130</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)"><span>🍓</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span>
-              <h6>Strawberry Frappe</h6>
-              <p>Thick blended strawberry frappe — sweet, icy, and creamy.</p>
-              <div class="menu-price">₱125 / ₱150</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8eaf6,#5c6bc0)"><span>🫐</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span>
-              <h6>Blueberry Frappe</h6>
-              <p>Blended blueberry frappe — fruity, frosty, and refreshing.</p>
-              <div class="menu-price">₱125 / ₱150</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── SNACKS ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🍟 Snacks</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffd6a5,#ff9a3c)"><span>🥪</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Snacks</span>
-              <h6>YB Clubhouse</h6>
-              <p>Our signature club sandwich — stacked, toasted, and satisfying.</p>
-              <div class="menu-price">₱160</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fffde7,#f57f17)"><span>🌮</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Snacks</span>
-              <h6>YB Nachos</h6>
-              <p>Crispy nachos served with dips — crunchy and shareable.</p>
-              <div class="menu-price">₱130</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffe082,#f9a825)"><span>🍟</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Snacks</span>
-              <h6>YB Fries</h6>
-              <p>Golden, crispy fries seasoned to perfection.</p>
-              <div class="menu-price">₱90</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff9c4,#f9a825)"><span>🍟</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Snacks</span>
-              <h6>YB Overload Fries</h6>
-              <p>Loaded fries topped with cheese sauce and all the extras.</p>
-              <div class="menu-price">₱125</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ff8a65,#e53935)"><span>🍔</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Snacks</span>
-              <h6>YB Burger</h6>
-              <p>Juicy YB-style burger — simple, hearty, and filling.</p>
-              <div class="menu-price">₱160</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c8e6c9,#388e3c)"><span>🍝</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Snacks</span>
-              <h6>Pasta of the Day</h6>
-              <p>Ask our crew for today's freshly prepared pasta special.</p>
-              <div class="menu-price">₱150</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── RICE MEALS ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🍚 Rice Meals</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e3f2fd,#1565c0)"><span>🐟</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Rice Meals</span>
-              <h6>Fish Fillet Meal</h6>
-              <p>Crispy fish fillet served with steamed rice and sauce.</p>
-              <div class="menu-price">₱99</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fbe9e7,#bf360c)"><span>🥩</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Rice Meals</span>
-              <h6>Hungarian Meal</h6>
-              <p>Savory Hungarian sausage served with garlic rice.</p>
-              <div class="menu-price">₱99</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#f9fbe7,#827717)"><span>🫘</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Rice Meals</span>
-              <h6>Tofu Sisig Meal</h6>
-              <p>Sizzling tofu sisig with rice — a flavorful plant-based option.</p>
-              <div class="menu-price">₱99</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff8e1,#ff8f00)"><span>🍱</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Rice Meals</span>
-              <h6>Combo Meal</h6>
-              <p>A hearty combination meal — ask crew for today's pairing.</p>
-              <div class="menu-price">₱170</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── ALL DAY BFAST ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🍳 All Day Breakfast</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffe0b2,#e65100)"><span>🍳</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">All Day Bfast</span>
-              <h6>Luncheon Meal</h6>
-              <p>Classic luncheon meat with fried egg and garlic rice.</p>
-              <div class="menu-price">₱130</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff9c4,#f57f17)"><span>🍳</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">All Day Bfast</span>
-              <h6>Bites Meal</h6>
-              <p>Bite-sized meats with garlic fried rice and egg — all day comfort.</p>
-              <div class="menu-price">₱130</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffd6a5,#bf360c)"><span>🍳</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">All Day Bfast</span>
-              <h6>YB Breakfast Special</h6>
-              <p>The full YB breakfast experience — a complete morning spread.</p>
-              <div class="menu-price">₱180</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── LEMON SECTION ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🍋 Lemon Section</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fffde7,#f9a825)"><span>🍋</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Lemon Section</span>
-              <h6>Plain Lemonade</h6>
-              <p>Freshly squeezed lemonade — clean, tart, and thirst-quenching.</p>
-              <div class="menu-price">₱80</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8f5e9,#2e7d32)"><span>🥒</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Lemon Section</span>
-              <h6>Cucumber Lemon</h6>
-              <p>Cooling cucumber meets zesty lemon for a spa-inspired sip.</p>
-              <div class="menu-price">₱85</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#c62828)"><span>🍓</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Lemon Section</span>
-              <h6>Strawberry Lemon</h6>
-              <p>Sweet strawberry blended with fresh lemon — fruity and bright.</p>
-              <div class="menu-price">₱90</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── WAFFLES ── -->
-        <div class="col-12 mt-3"><h5 class="fw-bold" style="color:var(--brown);border-bottom:2px solid var(--yellow);padding-bottom:.4rem">🧇 Waffles</h5></div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff3e0,#ffcc80)"><span>🧇</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Waffles</span>
-              <h6>Plain Waffle</h6>
-              <p>Crispy-on-the-outside, fluffy-on-the-inside classic waffle.</p>
-              <div class="menu-price">₱70</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3e2000,#7a3d10)"><span>🍫</span></div>
-              <span class="bestseller-badge">⭐ Best</span>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Waffles</span>
-              <h6>Chocolate Waffle</h6>
-              <p>Waffle drizzled with rich chocolate sauce — a sweet indulgence.</p>
-              <div class="menu-price">₱85</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffe082,#e65100)"><span>🍯</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Waffles</span>
-              <h6>Caramel Waffle</h6>
-              <p>Golden waffle topped with warm caramel sauce — buttery and sweet.</p>
-              <div class="menu-price">₱85</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="menu-card">
-            <div class="menu-card-img-wrap">
-              <div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)"><span>🍓</span></div>
-            </div>
-            <div class="menu-card-body">
-              <span class="badge-category" style="font-size:.62rem">Waffles</span>
-              <h6>Strawberry Waffle</h6>
-              <p>Fluffy waffle finished with fresh strawberry topping and cream.</p>
-              <div class="menu-price">₱90</div>
-            </div>
-          </div>
-        </div>
-
+<!-- HERO -->
+<section class="menu-hero">
+  <div class="menu-hero-inner fade-up visible">
+    <p class="menu-label">What We're Brewing</p>
+    <h1>Our <span>Menu</span></h1>
+    <p>From bold espresso blends to refreshing fruit sodas, waffles, and all-day meals — everything crafted with quality and affordability in mind.</p>
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('hot', this)">🔥 Hot Blends</button>
+  <button class="tab-btn" onclick="switchTab('iced', this)">🧊 Iced Blends</button>
+  <button class="tab-btn" onclick="switchTab('fruitsodas', this)">🍋 Fruit Sodas</button>
+  <button class="tab-btn" onclick="switchTab('frappes', this)">🥤 Frappes</button>
+  <button class="tab-btn" onclick="switchTab('food', this)">🍽️ Food</button>
+  <button class="tab-btn" onclick="switchTab('waffles', this)">🧇 Waffles</button>
+  <button class="tab-btn" onclick="switchTab('packages', this)">🎪 Packages</button>
+</div>
+
+<!-- WAVE -->
+<div class="wave-top">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+    <path d="M0,60 C480,0 960,60 1440,30 L1440,60 Z" fill="#FDF6E3"/>
+  </svg>
+</div>
+
+<!-- MENU BODY -->
+<div class="menu-body">
+
+  <!-- HOT BLENDS TAB -->
+  <div id="tab-hot" class="tab-panel active">
+    <div class="featured-item fade-up visible">
+      <div class="featured-img" style="background:linear-gradient(135deg,#4B2E13,#7A4F2E)">☕</div>
+      <div class="featured-content">
+        <span class="featured-badge">⭐ Best Seller</span>
+        <h2 class="featured-name">Spanish Latte</h2>
+        <p class="featured-desc">Sweet condensed milk meets bold espresso — rich, creamy, and irresistibly smooth. One of Yellow Bean's most-loved hot blends.</p>
+        <div class="featured-price">₱110</div>
       </div>
-    </div><!-- end #all -->
+    </div>
 
+    <h3 class="menu-section-title">Hot Blends</h3>
+    <div class="menu-grid">
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#2d1b00,#5c3317)">☕</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Americano</h4>
+          <p class="menu-card-desc">Bold espresso diluted with hot water — strong, clean, and classic.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱90</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#8B5E3C)">🥛</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Cafe Latte</h4>
+          <p class="menu-card-desc">Espresso with velvety steamed milk, smooth and comforting.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱100</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#f5c518)">🍮</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Caramel Macchiato</h4>
+          <p class="menu-card-desc">Sweet caramel drizzled over layered espresso and steamed milk.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱120</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#3B1E08,#7A3E1E)">🍫</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Mocha Latte</h4>
+          <p class="menu-card-desc">Rich chocolate and espresso blended with steamed milk.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱120</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c8f7c5,#78c850)">🌿
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Matcha Latte</h4>
+          <p class="menu-card-desc">Premium Japanese matcha with silky steamed milk — earthy and creamy.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱130</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#1a4a1a,#2d8f2d)">🍵
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Matcha Espresso</h4>
+          <p class="menu-card-desc">A bold fusion of earthy matcha and rich espresso — bold and unique.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱150</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#f5c518)">☕
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Spanish Latte</h4>
+          <p class="menu-card-desc">Sweet condensed milk meets bold espresso for a creamy treat.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱110</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#8B4513,#D2691E)">🍫
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Choco Dream</h4>
+          <p class="menu-card-desc">Rich, velvety hot chocolate — an indulgent non-coffee dream.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱95</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="addon-note">➕ Add-on: Espresso Shot +₱25</div>
+  </div>
 
-    <!-- ══════════════════════════════════════════
-         HOT BLENDS TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="hot">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d1b00,#5c3317)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Hot Blends</span><h6>Americano</h6><p>Bold espresso shots diluted with hot water — clean and strong.</p><div class="menu-price">₱90</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#4B2E13,#a87040)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Hot Blends</span><h6>Cafe Latte</h6><p>Smooth espresso with velvety steamed milk — a timeless classic.</p><div class="menu-price">₱100</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#4B2E13,#c07830)"><span>☕</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Hot Blends</span><h6>Caramel Macchiato</h6><p>Rich espresso with steamed milk and a golden caramel drizzle.</p><div class="menu-price">₱120</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3E1F00,#7A4F2E)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Hot Blends</span><h6>Mocha Latte</h6><p>Espresso blended with rich chocolate and creamy steamed milk.</p><div class="menu-price">₱120</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c8f7c5,#78c850)"><span>🍵</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Hot Blends · Non-Coffee</span><h6>Matcha Latte</h6><p>Smooth Japanese matcha blended with fresh creamy milk.</p><div class="menu-price">₱120</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d3a00,#5c7a17)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Hot Blends</span><h6>Matcha Espresso</h6><p>Bold espresso shot poured over vibrant, earthy matcha milk.</p><div class="menu-price">₱150</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#8B4513,#D2691E)"><span>🍫</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Hot Blends</span><h6>Choco Dream</h6><p>Rich, velvety chocolate drink — warm and deeply satisfying.</p><div class="menu-price">₱95</div></div></div></div>
-        <div class="col-12">
-          <div class="p-3" style="background:var(--cream-dk);border-radius:12px;font-size:.85rem;color:var(--muted);max-width:320px">
-            ➕ <strong>Add-on:</strong> Espresso shot +₱25
+  <!-- ICED BLENDS TAB -->
+  <div id="tab-iced" class="tab-panel">
+    <div class="featured-item fade-up">
+      <div class="featured-img" style="background:linear-gradient(135deg,#1a4a1a,#2d8f2d)">🌿</div>
+      <div class="featured-content">
+        <span class="featured-badge">⭐ Best Seller (Non-Coffee)</span>
+        <h2 class="featured-name">Iced Matcha Latte</h2>
+        <p class="featured-desc">Chilled premium Japanese matcha blended with creamy cold milk over ice. Earthy, refreshing, and beautifully green.</p>
+        <div class="featured-price">₱135 <span style="font-size:1rem;color:rgba(245,197,24,0.7)">/ 12oz</span></div>
+      </div>
+    </div>
+
+    <h3 class="menu-section-title">Iced Blends <span class="size-note">(12oz / 16oz)</span></h3>
+    <div class="menu-grid">
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#2d1b00,#5c7a8a)">🧊</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Americano</h4>
+          <p class="menu-card-desc">Espresso over ice — bold and refreshing.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱95</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱120</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#8B5E3C)">🥛</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Cafe Latte</h4>
+          <p class="menu-card-desc">Chilled espresso with cold milk over ice.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱105</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱130</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#f5c518)">🍮</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Caramel Macchiato</h4>
+          <p class="menu-card-desc">Caramel, espresso, and cold milk — layered and sweet.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱125</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱150</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#3B1E08,#7A3E1E)">🍫</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Mocha Latte</h4>
+          <p class="menu-card-desc">Chocolate and espresso chilled over ice.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱125</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱150</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c8f7c5,#78c850)">🌿
+          <span class="bestseller-tag">⭐ Best NC</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Matcha Latte</h4>
+          <p class="menu-card-desc">Iced premium matcha with creamy milk — a non-coffee bestseller.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱135</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱160</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#1a4a1a,#2d8f2d)">🍵</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Matcha Espresso</h4>
+          <p class="menu-card-desc">Bold espresso meets earthy matcha — iced and energizing.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱155</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱180</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#f5c518)">☕
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Spanish Latte</h4>
+          <p class="menu-card-desc">Condensed milk and espresso over ice — sweet, cold, irresistible.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱115</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱140</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#8B4513,#D2691E)">🍫
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Choco Dream</h4>
+          <p class="menu-card-desc">Rich chocolate blend on ice — sweet, cold, and dreamy.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱100</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱125</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)">🍓
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Strawberry Dream</h4>
+          <p class="menu-card-desc">Fresh strawberry blended into a creamy iced milk drink.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱100</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱125</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#e3f2fd,#42a5f5)">🫐
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Blueberry Dream</h4>
+          <p class="menu-card-desc">Blueberry blended with milk over ice — fruity and refreshing.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱100</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱125</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#3B1E08,#7A3E1E)">☕
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Coffee Jelly</h4>
+          <p class="menu-card-desc">Silky coffee jelly in a creamy iced milk blend — textured and fun.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱130</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱155</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#8B0000,#c0392b)">🌹
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Red Forest</h4>
+          <p class="menu-card-desc">Deep red velvet-inspired blend — rich, indulgent, and striking.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱150</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱175</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#d4a012)">🍪</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Biscoff Latte</h4>
+          <p class="menu-card-desc">Cookie butter latte — warm spiced sweetness over iced espresso.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱150</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#6B2FA0,#a855f7)">🍇
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Ube Latte</h4>
+          <p class="menu-card-desc">Filipino purple yam latte — vibrant, sweet, and uniquely Pinoy.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱140</div></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="addon-note">➕ Add-on: Espresso Shot +₱25</div>
+  </div>
 
-    <!-- ══════════════════════════════════════════
-         ICED BLENDS TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="iced">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#1a3a5c,#3a7ab5)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Iced Americano</h6><p>Chilled espresso over ice — refreshingly bold and clean.</p><div class="menu-price">₱95 / ₱120</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3a1a00,#7a4a20)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Iced Cafe Latte</h6><p>Espresso and cold milk over ice — smooth and satisfying.</p><div class="menu-price">₱105 / ₱130</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#5c3000,#c07030)"><span>☕</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Iced Caramel Macchiato</h6><p>Layered espresso, milk, and caramel drizzle over ice.</p><div class="menu-price">₱120 / ₱150</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3E1F00,#7A4F2E)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Iced Mocha Latte</h6><p>Chilled espresso and chocolate milk over ice — indulgent and bold.</p><div class="menu-price">₱120 / ₱150</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#1a3d00,#4a8a20)"><span>🍵</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends · Non-Coffee</span><h6>Iced Matcha Latte</h6><p>Vibrant matcha poured over ice and creamy cold milk.</p><div class="menu-price">₱130 / ₱160</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d3a00,#5c7a17)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Matcha Espresso</h6><p>Espresso shot over iced matcha milk — energizing fusion.</p><div class="menu-price">₱135 / ₱160</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c0a080,#f5c518)"><span>☕</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Spanish Latte</h6><p>Sweet condensed milk and bold espresso poured over ice.</p><div class="menu-price">₱115 / ₱140</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#4a1a00,#9a3820)"><span>🍫</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Choco Dream</h6><p>Iced rich chocolate blend — cool, creamy, and indulgent.</p><div class="menu-price">₱100 / ₱125</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3b1a5a,#7a3ab0)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Blueberry Dream</h6><p>Espresso meets sweet blueberry in a refreshing iced blend.</p><div class="menu-price">₱100 / ₱125</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#1a4a2a,#3a9a5a)"><span>🍮</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Coffee Jelly</h6><p>Iced latte topped with silky coffee jelly cubes — fun and unique.</p><div class="menu-price">₱100 / ₱125</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#8B0000,#cc3333)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Red Forest</h6><p>Striking red velvet-inspired iced blend with a creamy finish.</p><div class="menu-price">₱150 / ₱175</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#2d1b4a,#6a3d99)"><span>☕</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Biscoff Latte</h6><p>Creamy espresso latte swirled with spiced Biscoff cookie spread.</p><div class="menu-price">₱150 / ₱175</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#003a4a,#0077aa)"><span>☕</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Iced Blends</span><h6>Ube Latte</h6><p>Vibrant purple ube blended with espresso and iced milk.</p><div class="menu-price">₱115 / ₱140</div></div></div></div>
-        <div class="col-12">
-          <div class="p-3" style="background:var(--cream-dk);border-radius:12px;font-size:.85rem;color:var(--muted);max-width:320px">
-            📐 <strong>Sizes:</strong> 12oz / 16oz
+  <!-- FRUIT SODAS TAB -->
+  <div id="tab-fruitsodas" class="tab-panel">
+    <div class="featured-item fade-up">
+      <div class="featured-img" style="background:linear-gradient(135deg,#78c850,#2d8f2d)">🍈</div>
+      <div class="featured-content">
+        <span class="featured-badge">⭐ Best Seller</span>
+        <h2 class="featured-name">Green Apple Soda</h2>
+        <p class="featured-desc">Crisp and tangy green apple flavor blended with sparkling soda — light, fizzy, and perfectly refreshing on any day.</p>
+        <div class="featured-price">₱55 <span style="font-size:1rem;color:rgba(245,197,24,0.7)">/ 12oz</span></div>
+      </div>
+    </div>
+
+    <h3 class="menu-section-title">Fruit Sodas <span class="size-note">(12oz / 16oz)</span></h3>
+    <div class="menu-grid">
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#e3f2fd,#42a5f5)">🫐</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Blueberry</h4>
+          <p class="menu-card-desc">Fizzy blueberry soda — sweet, light, and energizing.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱55</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱65</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)">🍓</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Strawberry</h4>
+          <p class="menu-card-desc">Sweet and fruity strawberry soda — a crowd-pleaser.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱55</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱65</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#d4edda,#28a745)">🥝</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Kiwi</h4>
+          <p class="menu-card-desc">Tangy kiwi blended into a sparkling refreshing soda.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱55</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱65</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#78c850,#2d8f2d)">🍈
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Green Apple</h4>
+          <p class="menu-card-desc">Crisp, tangy green apple soda — the ultimate refresher.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱55</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱65</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fff3e0,#ff9a3c)">🍈
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Lychee</h4>
+          <p class="menu-card-desc">Delicate and floral lychee soda — light and subtly sweet.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱55</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱65</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fce4ec,#ff6b6b)">🍉
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Watermelon</h4>
+          <p class="menu-card-desc">Juicy watermelon soda — sweet, pink, and tropical.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱55</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱65</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fff9c4,#f9a825)">🥭</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Mango</h4>
+          <p class="menu-card-desc">Tropical mango blended with fizzy soda — sunshine in a cup.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱55</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱65</div></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="addon-note">➕ Add-ons: Nata +₱10 &nbsp;|&nbsp; Lychee Popping Boba +₱10 &nbsp;|&nbsp; Strawberry Popping Boba +₱10</div>
 
-    <!-- ══════════════════════════════════════════
-         FRUIT SODAS TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="fruitsodas">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)"><span>🍓</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Fruit Sodas</span><h6>Strawberry Soda</h6><p>Fizzy strawberry soda — sweet, tangy, and refreshingly cold.</p><div class="menu-price">₱55 / ₱65</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fffde7,#f9a825)"><span>🥝</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Fruit Sodas</span><h6>Kiwi Soda</h6><p>Bright and tangy kiwi soda — tropical and effervescent.</p><div class="menu-price">₱55 / ₱65</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8f5e9,#43a047)"><span>🍏</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Fruit Sodas</span><h6>Green Apple Soda</h6><p>Crisp and zesty green apple with a sparkling fizz.</p><div class="menu-price">₱55 / ₱65</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e0f7fa,#26c6da)"><span>🍈</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Fruit Sodas</span><h6>Lychee Soda</h6><p>Delicately sweet lychee paired with light, bubbly soda water.</p><div class="menu-price">₱55 / ₱65</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e53935)"><span>🍉</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Fruit Sodas</span><h6>Watermelon Soda</h6><p>Juicy, summery watermelon soda — sweet and super refreshing.</p><div class="menu-price">₱55 / ₱65</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8eaf6,#5c6bc0)"><span>🫐</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Fruit Sodas</span><h6>Blueberry Soda</h6><p>Fizzy blueberry soda — light, vibrant, and energizing.</p><div class="menu-price">₱55 / ₱65</div></div></div></div>
-        <div class="col-12">
-          <div class="p-3" style="background:var(--cream-dk);border-radius:12px;font-size:.85rem;color:var(--muted);max-width:440px">
-            🧋 <strong>Add-ons:</strong> Nata ₱10 &nbsp;|&nbsp; Lychee Popping Boba ₱10 &nbsp;|&nbsp; Strawberry Popping Boba ₱10 &nbsp;|&nbsp; Sizes: 12oz / 16oz
+    <h3 class="menu-section-title" style="margin-top:2rem;">Lemon Section</h3>
+    <div class="menu-list">
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍋</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Plain Lemonade</div>
+          <div class="menu-list-desc">Classic fresh lemonade — clean, bright, and citrusy.</div>
+        </div>
+        <div class="menu-list-price">₱80</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🥒</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Cucumber Lemon <span class="bs-pill">⭐ Best</span></div>
+          <div class="menu-list-desc">Refreshing cucumber paired with tangy lemon — light and cool.</div>
+        </div>
+        <div class="menu-list-price">₱85</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍓</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Strawberry Lemon</div>
+          <div class="menu-list-desc">Sweet strawberries blended with fresh lemon for a fruity kick.</div>
+        </div>
+        <div class="menu-list-price">₱90</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRAPPES TAB -->
+  <div id="tab-frappes" class="tab-panel">
+    <div class="featured-item fade-up">
+      <div class="featured-img" style="background:linear-gradient(135deg,#c8f7c5,#78c850)">🌿</div>
+      <div class="featured-content">
+        <span class="featured-badge">⭐ Best Seller (Non-Coffee)</span>
+        <h2 class="featured-name">Matcha Frappe</h2>
+        <p class="featured-desc">Thick blended premium matcha ice topped with whipped cream — earthy, creamy, and utterly satisfying.</p>
+        <div class="featured-price">₱145 <span style="font-size:1rem;color:rgba(245,197,24,0.7)">/ 12oz</span></div>
+      </div>
+    </div>
+
+    <h3 class="menu-section-title">Frappes <span class="size-note">(12oz / 16oz)</span></h3>
+    <div class="menu-grid">
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c8f7c5,#78c850)">🌿
+          <span class="noncoffee-tag">Non-Coffee</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Matcha</h4>
+          <p class="menu-card-desc">Thick blended matcha ice with whipped cream topping.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱145</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱170</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#3B1E08,#7A3E1E)">☕
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Java Chip</h4>
+          <p class="menu-card-desc">Blended coffee frappe with chocolate chips — thick and indulgent.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱90</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱115</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#8B0000,#c0392b)">🌹</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Red Velvet</h4>
+          <p class="menu-card-desc">Velvety red velvet frappe topped with rich cream — decadent treat.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱110</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱130</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)">🍓
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Strawberry</h4>
+          <p class="menu-card-desc">Thick strawberry frappe with whipped cream — sweet and fruity bliss.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱125</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱150</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#e3f2fd,#42a5f5)">🫐</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Blueberry</h4>
+          <p class="menu-card-desc">Blended blueberry frappe — fruity, thick, and refreshingly cold.</p>
+          <div class="menu-card-footer">
+            <div class="price-group">
+              <div><div class="price-label">12oz</div><div class="menu-price price-sm">₱125</div></div>
+              <div><div class="price-label">16oz</div><div class="menu-price price-sm">₱150</div></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ══════════════════════════════════════════
-         FRAPPES TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="frappes">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c8f7c5,#3d8b37)"><span>🍵</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span><h6>Matcha Frappe</h6><p>Blended matcha frappe — icy, creamy, and earthy.</p><div class="menu-price">₱145 / ₱170</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3a1a00,#8a4010)"><span>☕</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Frappes</span><h6>Java Chip Frappe</h6><p>Blended espresso frappe loaded with chocolate chips.</p><div class="menu-price">₱90 / ₱115</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#8B0000,#cc3333)"><span>🍰</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span><h6>Red Velvet Frappe</h6><p>Velvety red velvet blended with cream — rich and gorgeous.</p><div class="menu-price">₱110 / ₱130</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)"><span>🍓</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span><h6>Strawberry Frappe</h6><p>Thick blended strawberry frappe — sweet, icy, and creamy.</p><div class="menu-price">₱125 / ₱150</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8eaf6,#5c6bc0)"><span>🫐</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Frappes · Non-Coffee</span><h6>Blueberry Frappe</h6><p>Blended blueberry frappe — fruity, frosty, and refreshing.</p><div class="menu-price">₱125 / ₱150</div></div></div></div>
-        <div class="col-12">
-          <div class="p-3" style="background:var(--cream-dk);border-radius:12px;font-size:.85rem;color:var(--muted);max-width:280px">
-            📐 <strong>Sizes:</strong> 12oz / 16oz
-          </div>
+  <!-- FOOD TAB -->
+  <div id="tab-food" class="tab-panel">
+    <div class="featured-item fade-up">
+      <div class="featured-img" style="background:linear-gradient(135deg,#ffd6a5,#ff9a3c)">🥪</div>
+      <div class="featured-content">
+        <span class="featured-badge">⭐ Top Food Pick</span>
+        <h2 class="featured-name">YB Clubhouse</h2>
+        <p class="featured-desc">Yellow Bean's signature clubhouse sandwich — stacked and satisfying. Best paired with an iced blend or fruit soda.</p>
+        <div class="featured-price">₱160</div>
+      </div>
+    </div>
+
+    <h3 class="menu-section-title">Snacks</h3>
+    <div class="menu-list">
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🥪</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">YB Clubhouse</div>
+          <div class="menu-list-desc">Signature Yellow Bean clubhouse sandwich — layered and satisfying.</div>
+        </div>
+        <div class="menu-list-price">₱160</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🌽</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">YB Nachos</div>
+          <div class="menu-list-desc">Crispy nachos topped with your favorite toppings.</div>
+        </div>
+        <div class="menu-list-price">₱110</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍟</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">YB Fries</div>
+          <div class="menu-list-desc">Golden crispy fries — simple, classic café snack.</div>
+        </div>
+        <div class="menu-list-price">₱90</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍟</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">YB Overload Fries <span class="bs-pill">⭐ Best</span></div>
+          <div class="menu-list-desc">Loaded fries with toppings and sauce — the ultimate snack upgrade.</div>
+        </div>
+        <div class="menu-list-price">₱125</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍔</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">YB Burger</div>
+          <div class="menu-list-desc">Yellow Bean's signature burger — juicy, filling, and café-style.</div>
+        </div>
+        <div class="menu-list-price">₱160</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍜</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Pasta of the Day</div>
+          <div class="menu-list-desc">Ask your barista for today's special pasta — freshly made daily.</div>
+        </div>
+        <div class="menu-list-price">₱150</div>
+      </div>
+    </div>
+
+    <h3 class="menu-section-title" style="margin-top:2.5rem;">Rice Meals</h3>
+    <div class="menu-list">
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🐟</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Fish Fillet Meal <span class="bs-pill">⭐ Best</span></div>
+          <div class="menu-list-desc">Crispy fish fillet served with rice and sauce.</div>
+        </div>
+        <div class="menu-list-price">₱99</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍖</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Hungarian Meal</div>
+          <div class="menu-list-desc">Hungarian sausage served with garlic rice.</div>
+        </div>
+        <div class="menu-list-price">₱99</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🥘</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Tofu Sisig Meal</div>
+          <div class="menu-list-desc">Savory tofu sisig with garlic rice — a vegetarian-friendly favorite.</div>
+        </div>
+        <div class="menu-list-price">₱99</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍱</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Combo Meal</div>
+          <div class="menu-list-desc">Meal + drink combo — the best value option at Yellow Bean.</div>
+        </div>
+        <div class="menu-list-price">₱170</div>
+      </div>
+    </div>
+
+    <h3 class="menu-section-title" style="margin-top:2.5rem;">All Day Breakfast</h3>
+    <div class="menu-list">
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🥫</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Luncheon Meal</div>
+          <div class="menu-list-desc">Classic luncheon meat with rice — simple and satisfying.</div>
+        </div>
+        <div class="menu-list-price">₱130</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🍳</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">Bites Meal <span class="bs-pill">⭐ Best</span></div>
+          <div class="menu-list-desc">Bite-sized protein pieces with rice — tasty and filling.</div>
+        </div>
+        <div class="menu-list-price">₱130</div>
+      </div>
+      <div class="menu-list-item fade-up">
+        <span class="menu-list-emoji">🌟</span>
+        <div class="menu-list-info">
+          <div class="menu-list-name">YB Breakfast Special</div>
+          <div class="menu-list-desc">Yellow Bean's ultimate all-day breakfast spread — the full experience.</div>
+        </div>
+        <div class="menu-list-price">₱180</div>
+      </div>
+    </div>
+    <div class="addon-note" style="margin-top:1rem;">📦 Additional ₱5 for every take-out box</div>
+  </div>
+
+  <!-- WAFFLES TAB -->
+  <div id="tab-waffles" class="tab-panel">
+    <div class="featured-item fade-up">
+      <div class="featured-img" style="background:linear-gradient(135deg,#8B4513,#D2691E)">🧇</div>
+      <div class="featured-content">
+        <span class="featured-badge">⭐ Best Seller</span>
+        <h2 class="featured-name">Chocolate Waffle</h2>
+        <p class="featured-desc">Fluffy Belgian-style waffle drizzled with rich chocolate sauce — warm, sweet, and perfect alongside any cold drink.</p>
+        <div class="featured-price">₱85</div>
+      </div>
+    </div>
+
+    <h3 class="menu-section-title">Waffles</h3>
+    <div class="menu-grid">
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fff3e0,#ffcc80)">🧇</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Plain</h4>
+          <p class="menu-card-desc">Classic fluffy waffle with butter — simple, warm, and satisfying.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱70</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#8B4513,#D2691E)">🍫
+          <span class="bestseller-tag">⭐ Best Seller</span>
+        </div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Chocolate</h4>
+          <p class="menu-card-desc">Waffle with rich chocolate drizzle — indulgent and crowd-favorite.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱85</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#c0a080,#f5c518)">🍮</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Caramel</h4>
+          <p class="menu-card-desc">Fluffy waffle topped with golden caramel sauce — sweet perfection.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱85</span></div>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)">🍓</div>
+        <div class="menu-card-body">
+          <h4 class="menu-card-name">Strawberry</h4>
+          <p class="menu-card-desc">Waffle with sweet strawberry sauce and toppings — fruity and fun.</p>
+          <div class="menu-card-footer"><span class="menu-price">₱90</span></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ══════════════════════════════════════════
-         SNACKS TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="snacks">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffd6a5,#ff9a3c)"><span>🥪</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Snacks</span><h6>YB Clubhouse</h6><p>Our signature club sandwich — stacked, toasted, and satisfying.</p><div class="menu-price">₱160</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fffde7,#f57f17)"><span>🌮</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Snacks</span><h6>YB Nachos</h6><p>Crispy nachos served with dips — crunchy and shareable.</p><div class="menu-price">₱130</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffe082,#f9a825)"><span>🍟</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Snacks</span><h6>YB Fries</h6><p>Golden, crispy fries seasoned to perfection.</p><div class="menu-price">₱90</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff9c4,#f9a825)"><span>🍟</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Snacks</span><h6>YB Overload Fries</h6><p>Loaded fries topped with cheese sauce and all the extras.</p><div class="menu-price">₱125</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ff8a65,#e53935)"><span>🍔</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Snacks</span><h6>YB Burger</h6><p>Juicy YB-style burger — simple, hearty, and filling.</p><div class="menu-price">₱160</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#c8e6c9,#388e3c)"><span>🍝</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Snacks</span><h6>Pasta of the Day</h6><p>Ask our crew for today's freshly prepared pasta special.</p><div class="menu-price">₱150</div></div></div></div>
+  <!-- PACKAGES TAB -->
+  <div id="tab-packages" class="tab-panel">
+    <div style="text-align:center;margin-bottom:3rem;" class="fade-up">
+      <p style="font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--brown-mid);margin-bottom:0.75rem;">Events & Catering</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--brown);font-weight:700;">Event Cart Packages</h2>
+      <p style="color:var(--text-mid);max-width:550px;margin:1rem auto;font-weight:300;line-height:1.7;">We bring Yellow Bean's café experience to your school, sports event, or community celebration. Book our cart and let us serve sunshine to your guests.</p>
+    </div>
+
+    <div class="pkg-grid">
+      <div style="background:var(--brown);border-radius:24px;padding:3rem;color:var(--cream);position:relative;overflow:hidden;" class="fade-up">
+        <div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(245,197,24,0.1);border-radius:50%;"></div>
+        <div style="font-size:3rem;margin-bottom:1rem;">🎪</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--yellow);font-weight:700;margin-bottom:1rem;">Basic Cart Package</h3>
+        <p style="font-size:0.9rem;color:rgba(253,246,227,0.65);line-height:1.7;margin-bottom:1.5rem;font-weight:300;">Perfect for smaller events and school gatherings. Includes 2 drink options and cart setup.</p>
+        <ul style="list-style:none;font-size:0.85rem;color:rgba(253,246,227,0.75);line-height:2;">
+          <li>✅ 2 drink selections</li>
+          <li>✅ Cart setup & takedown</li>
+          <li>✅ 1 staff member</li>
+          <li>✅ Cups & packaging</li>
+        </ul>
+        <p style="margin-top:1.5rem;font-size:0.8rem;color:rgba(253,246,227,0.4);">Contact us for pricing</p>
+      </div>
+      <div style="background:var(--yellow);border-radius:24px;padding:3rem;position:relative;overflow:hidden;" class="fade-up">
+        <div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(59,35,20,0.1);border-radius:50%;"></div>
+        <div style="font-size:3rem;margin-bottom:1rem;">🌟</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--brown);font-weight:700;margin-bottom:1rem;">Full Event Package</h3>
+        <p style="font-size:0.9rem;color:rgba(59,35,20,0.7);line-height:1.7;margin-bottom:1.5rem;font-weight:300;">Ideal for bigger events like Family Days and league games. Full menu and complete experience.</p>
+        <ul style="list-style:none;font-size:0.85rem;color:rgba(59,35,20,0.8);line-height:2;">
+          <li>✅ Full drink & food menu</li>
+          <li>✅ Complete cart setup</li>
+          <li>✅ 2 staff members</li>
+          <li>✅ Branding & decorations</li>
+        </ul>
+        <p style="margin-top:1.5rem;font-size:0.8rem;color:rgba(59,35,20,0.5);">Contact us for pricing</p>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         RICE MEALS TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="rice">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e3f2fd,#1565c0)"><span>🐟</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Rice Meals</span><h6>Fish Fillet Meal</h6><p>Crispy fish fillet served with steamed rice and sauce.</p><div class="menu-price">₱99</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fbe9e7,#bf360c)"><span>🥩</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Rice Meals</span><h6>Hungarian Meal</h6><p>Savory Hungarian sausage served with garlic rice.</p><div class="menu-price">₱99</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#f9fbe7,#827717)"><span>🫘</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Rice Meals</span><h6>Tofu Sisig Meal</h6><p>Sizzling tofu sisig with rice — a flavorful plant-based option.</p><div class="menu-price">₱99</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff8e1,#ff8f00)"><span>🍱</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Rice Meals</span><h6>Combo Meal</h6><p>A hearty combination meal — ask crew for today's pairing.</p><div class="menu-price">₱170</div></div></div></div>
-      </div>
+    <div style="background:var(--cream-dark);border-radius:20px;padding:2.5rem;text-align:center;border:2px dashed rgba(107,61,46,0.2);" class="fade-up">
+      <p style="font-size:0.9rem;color:var(--text-mid);margin-bottom:1rem;font-weight:300;">Ready to bring Yellow Bean to your event?</p>
+      <a href="contact.html" style="display:inline-block;padding:0.9rem 2.5rem;background:var(--brown);color:var(--yellow);border-radius:50px;font-weight:600;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.background='var(--yellow)';this.style.color='var(--brown)';" onmouseout="this.style.background='var(--brown)';this.style.color='var(--yellow)';">Get in Touch</a>
     </div>
-
-    <!-- ══════════════════════════════════════════
-         ALL DAY BFAST TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="alldaybfast">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffe0b2,#e65100)"><span>🍳</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">All Day Bfast</span><h6>Luncheon Meal</h6><p>Classic luncheon meat with fried egg and garlic rice.</p><div class="menu-price">₱130</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff9c4,#f57f17)"><span>🍳</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">All Day Bfast</span><h6>Bites Meal</h6><p>Bite-sized meats with garlic fried rice and egg — all day comfort.</p><div class="menu-price">₱130</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffd6a5,#bf360c)"><span>🍳</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">All Day Bfast</span><h6>YB Breakfast Special</h6><p>The full YB breakfast experience — a complete morning spread.</p><div class="menu-price">₱180</div></div></div></div>
-      </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════
-         LEMON SECTION TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="lemon">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fffde7,#f9a825)"><span>🍋</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Lemon Section</span><h6>Plain Lemonade</h6><p>Freshly squeezed lemonade — clean, tart, and thirst-quenching.</p><div class="menu-price">₱80</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#e8f5e9,#2e7d32)"><span>🥒</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Lemon Section</span><h6>Cucumber Lemon</h6><p>Cooling cucumber meets zesty lemon for a spa-inspired sip.</p><div class="menu-price">₱85</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#c62828)"><span>🍓</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Lemon Section</span><h6>Strawberry Lemon</h6><p>Sweet strawberry blended with fresh lemon — fruity and bright.</p><div class="menu-price">₱90</div></div></div></div>
-      </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════
-         WAFFLES TAB
-    ══════════════════════════════════════════ -->
-    <div class="tab-pane fade" id="waffles">
-      <div class="row g-4">
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fff3e0,#ffcc80)"><span>🧇</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Waffles</span><h6>Plain Waffle</h6><p>Crispy-on-the-outside, fluffy-on-the-inside classic waffle.</p><div class="menu-price">₱70</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#3e2000,#7a3d10)"><span>🍫</span></div><span class="bestseller-badge">⭐ Best</span></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Waffles</span><h6>Chocolate Waffle</h6><p>Waffle drizzled with rich chocolate sauce — a sweet indulgence.</p><div class="menu-price">₱85</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#ffe082,#e65100)"><span>🍯</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Waffles</span><h6>Caramel Waffle</h6><p>Golden waffle topped with warm caramel sauce — buttery and sweet.</p><div class="menu-price">₱85</div></div></div></div>
-        <div class="col-lg-3 col-md-4 col-sm-6"><div class="menu-card"><div class="menu-card-img-wrap"><div class="menu-emoji-bg" style="background:linear-gradient(135deg,#fce4ec,#e91e8c)"><span>🍓</span></div></div><div class="menu-card-body"><span class="badge-category" style="font-size:.62rem">Waffles</span><h6>Strawberry Waffle</h6><p>Fluffy waffle finished with fresh strawberry topping and cream.</p><div class="menu-price">₱90</div></div></div></div>
-      </div>
-    </div>
-
-  </div><!-- end tab-content -->
-
-  <!-- ── Legend ── -->
-  <div class="d-flex align-items-center gap-3 mt-5 p-3" style="background:var(--cream-dk);border-radius:12px;max-width:480px;margin-left:auto;margin-right:auto;text-align:center;justify-content:center;flex-wrap:wrap;gap:.75rem!important">
-    <span class="bestseller-badge" style="position:static">⭐ Best</span>
-    <span style="font-size:.85rem;color:var(--muted)">= Customer bestseller</span>
-    <span style="font-size:.85rem;color:var(--muted)">|</span>
-    <span style="font-size:.85rem;color:var(--muted)">Prices shown as 12oz / 16oz where applicable</span>
-    <span style="font-size:.85rem;color:var(--muted)">|</span>
-    <span style="font-size:.85rem;color:var(--muted)">*Additional ₱5 for every take-out box</span>
   </div>
 
 </div>
 
+<!-- FOOTER -->
+<footer class="menu-footer">
+  <a href="splash.html" class="footer-logo">Yellow<span>Bean</span> Café</a>
+  <p class="footer-copy">© 2024 Yellow Bean Café · Taal, Batangas</p>
+  <ul class="footer-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+    document.querySelectorAll('#tab-' + name + ' .fade-up').forEach(el => {
+      el.classList.remove('visible');
+      setTimeout(() => el.classList.add('visible'), 50);
+    });
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
 <script src="../shared-nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
