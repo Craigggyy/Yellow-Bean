@@ -12,9 +12,10 @@
   </div>
   <nav class="navbar navbar-yb navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="${base}index.html">
-        <span class="bean-icon">☕</span> Yellow Bean
-      </a>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="${base}index.html">
+  <img src="${base}image/logo.png" alt="Yellow Bean Logo" style="height:80px;">
+  <span>Yellow Bean</span>
+</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
         <span class="navbar-toggler-icon"></span>
       </button>
