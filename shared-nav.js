@@ -28,6 +28,8 @@
           <li class="nav-item"><a class="nav-link" href="${base}pages/menu.html">Menu</a></li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/services.html">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="${base}pages/personnel.html">Our Team</a></li>
+          
+          <li class="nav-item"><a class="nav-link" href="${base}pages/contact.html">Contact Us</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">More</a>
             <ul class="dropdown-menu">
@@ -36,7 +38,6 @@
               <li><a class="dropdown-item" href="${base}pages/customers.html">Our Customers</a></li>
             </ul>
           </li>
-          <li class="nav-item"><a class="nav-link" href="${base}pages/contact.html">Contact Us</a></li>
         </ul>
       </div>
     </div>
