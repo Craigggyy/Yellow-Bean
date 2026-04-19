@@ -11,335 +11,310 @@
   <link rel="stylesheet" href="../css/style.css"/>
 
   <style>
+    /* ── DESIGN SYSTEM (matches index page) ── */
     :root {
-      --yellow:     #F5C518;
-      --yellow-lt:  #fdd96b;
-      --brown:      #3e2209;
-      --brown-mid:  #6b3e1c;
-      --brown-lt:   #9a6b45;
-      --cream:      #FDF8F0;
-      --cream-dk:   #f0e8d4;
-      --cream-md:   #f5ede0;
-      --white:      #ffffff;
-      --muted:      #7a6650;
-      --muted-lt:   #a89070;
-      --border:     #e4d9c4;
-      --border-dk:  #d5c5a8;
+      --brown:     #3e2209;
+      --brown-mid: #6b3e1c;
+      --brown-lt:  #9a6b45;
+      --yellow:    #F5C518;
+      --yellow-lt: #FDE87A;
+      --yellow-dk: #d4a810;
+      --cream:     #FFF8E7;
+      --cream-dk:  #F5EEE0;
+      --cream-md:  #f0e8d4;
+      --white:     #ffffff;
+      --muted:     #7a6650;
+      --muted-lt:  #a89070;
+      --border:    #e4d9c4;
+      --shadow:    0 8px 40px rgba(62,34,9,.13);
     }
 
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
       background: var(--cream);
       color: var(--brown);
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── HERO ── */
-    .page-hero {
-      position: relative;
+    /* ── HERO (matches index) ── */
+    .hero-modern {
       min-height: 65vh;
+      background: linear-gradient(135deg, var(--brown) 0%, #6B3E1E 50%, rgba(245,197,24,.1) 100%);
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: var(--brown);
+      padding: 100px 0 72px;
     }
-
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
-      opacity: .22;
-    }
-
-    .page-hero::after {
+    .hero-modern::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 100% at 20% 50%, rgba(62,34,9,.7) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 80% at 80% 30%, rgba(107,62,28,.5) 0%, transparent 60%);
+        radial-gradient(circle at 30% 20%, rgba(245,197,24,.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(245,197,24,.10) 0%, transparent 50%);
+      z-index: 1;
     }
+    .hero-modern .container { position: relative; z-index: 2; }
 
-    .page-hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 60px 24px;
-    }
-
-    .page-hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245,197,24,.12);
-      border: 1px solid rgba(245,197,24,.28);
-      color: var(--yellow-lt);
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      padding: 7px 18px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-    }
-
-    .page-hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-      color: var(--cream);
-      line-height: 1.15;
-      margin-bottom: 14px;
-      letter-spacing: -.015em;
-    }
-
-    .page-hero h1 em {
-      color: var(--yellow);
-      font-style: normal;
-    }
-
-    .page-hero p {
-      color: rgba(253,248,240,.48);
-      font-size: 1rem;
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.7;
-      letter-spacing: .01em;
-    }
-
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      color: rgba(253,248,240,.35);
-      font-size: .65rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .hero-scroll-hint span {
-      width: 1px;
-      height: 28px;
-      background: linear-gradient(to bottom, rgba(245,197,24,.5), transparent);
-    }
-
-    /* ── BADGE ── */
-    .badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(245,197,24,.1);
-      border: 1px solid rgba(245,197,24,.25);
-      color: var(--brown-lt);
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-    }
-
-    /* ── SECTION BASE ── */
-    .sec { padding: 80px 0; }
-    .sec-sm { padding: 56px 0; }
-
-    .sec-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-      line-height: 1.2;
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--yellow), #FDE87A);
       color: var(--brown);
-      margin-bottom: 14px;
-      letter-spacing: -.012em;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      border-radius: 50px;
+      padding: 8px 20px;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 32px rgba(245,197,24,.4);
+    }
+    .hero-modern h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .hero-modern h1 span { color: var(--yellow); }
+    .hero-modern .hero-desc {
+      color: rgba(255,248,231,.85);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 480px;
     }
 
-    .sec-sub {
+    .hero-coffee-orbit {
+      position: absolute;
+      top: 10%; right: 8%;
+      font-size: 14rem;
+      opacity: .05;
+      animation: orbit 20s linear infinite;
+      z-index: 1;
+    }
+    @keyframes orbit {
+      0%   { transform: rotate(0deg)   translateX(80px) rotate(0deg);   }
+      100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+    }
+
+    /* ── SECTION HELPERS ── */
+    .section-pad    { padding: 80px 0; }
+    .section-pad-sm { padding: 56px 0; }
+    .bg-cream       { background: var(--cream); }
+    .bg-cream-dk    { background: var(--cream-dk); }
+    .bg-brown       { background: var(--brown); }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 12px;
+      letter-spacing: -.02em;
+    }
+    .section-subtitle {
       color: var(--muted);
       font-size: .95rem;
-      line-height: 1.75;
-      max-width: 540px;
+      line-height: 1.8;
+      max-width: 520px;
       margin: 0 auto;
     }
-
-    /* ── FEATURED STORY ── */
-    .featured-story {
-      background: var(--cream-dk);
+    .badge-category {
+      display: inline-block;
+      background: rgba(245,197,24,.18);
+      color: var(--brown-mid);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      padding: 5px 14px;
+      margin-bottom: 14px;
     }
 
+    /* ── BTN STYLES (matches index) ── */
+    .btn-yb {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--yellow), var(--yellow-lt));
+      color: var(--brown);
+      font-weight: 700;
+      font-size: .9rem;
+      padding: 13px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: .02em;
+      box-shadow: 0 8px 24px rgba(245,197,24,.35);
+      transition: all .25s;
+    }
+    .btn-yb:hover {
+      color: var(--brown);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(245,197,24,.45);
+    }
+
+    /* ── FEATURED STORY (cream-dk, matches index story section) ── */
     .story-img-wrap {
       position: relative;
-      border-radius: 16px;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(62,34,9,.12), 0 2px 8px rgba(62,34,9,.06);
+      box-shadow: 0 24px 80px rgba(245,197,24,.3);
     }
-
     .story-img-wrap img {
       width: 100%;
-      height: 440px;
+      height: 420px;
       object-fit: cover;
       display: block;
     }
-
     .story-img-tag {
       position: absolute;
       bottom: 20px;
       left: 20px;
-      background: rgba(62,34,9,.88);
-      backdrop-filter: blur(10px);
+      background: rgba(62,34,9,.9);
+      backdrop-filter: blur(12px);
       color: var(--cream);
-      padding: 13px 18px;
-      border-radius: 12px;
+      padding: 14px 20px;
+      border-radius: 16px;
       border: 1px solid rgba(245,197,24,.2);
     }
-
     .story-img-tag h5 {
       margin-bottom: 3px;
-      font-size: .88rem;
-      font-weight: 600;
-    }
-
-    .story-img-tag small {
-      font-size: .7rem;
-      color: rgba(253,248,240,.65);
-    }
-
-    .story-text h2 {
+      font-size: .9rem;
+      font-weight: 700;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-      margin-bottom: 14px;
-      letter-spacing: -.012em;
+    }
+    .story-img-tag small {
+      font-size: .72rem;
+      color: rgba(255,248,231,.6);
     }
 
-    .story-text p {
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: .95rem;
-    }
-
-    .story-stat-row {
-      display: flex;
-      gap: 16px;
-      margin-top: 28px;
-    }
-
+    /* Stat mini-cards inside story section */
     .story-stat {
-      flex: 1;
       background: var(--white);
-      border-radius: 12px;
-      padding: 16px 14px;
+      border-radius: 16px;
+      padding: 20px 16px;
       text-align: center;
-      box-shadow: 0 2px 12px rgba(62,34,9,.06), 0 1px 3px rgba(62,34,9,.04);
-      border: 1px solid rgba(62,34,9,.04);
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--yellow);
+      transition: all .3s;
     }
-
+    .story-stat:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(62,34,9,.18); }
     .story-stat .num {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       color: var(--yellow);
       font-weight: 700;
+      line-height: 1;
     }
-
     .story-stat .lbl {
-      font-size: .72rem;
+      font-size: .7rem;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 5px;
+      font-weight: 600;
+      letter-spacing: .04em;
     }
 
     /* ── GALLERY ── */
     .gallery-item {
       position: relative;
-      border-radius: 14px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 8px 28px rgba(62,34,9,.1), 0 1px 3px rgba(62,34,9,.04);
+      box-shadow: var(--shadow);
       cursor: pointer;
     }
-
     .gallery-item img {
       width: 100%;
       height: 300px;
       object-fit: cover;
       display: block;
+      transition: transform .5s ease;
     }
-
-    .gallery-item.tall img { height: 380px; }
     .gallery-item.feature img { height: 420px; }
+    .gallery-item:hover img { transform: scale(1.06); }
 
     .gallery-caption {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 50px 22px 20px;
-      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.08) 30%, rgba(0,0,0,.48) 100%);
-      color: var(--white);
-      font-size: .95rem;
-      font-weight: 500;
-      letter-spacing: .01em;
-      line-height: 1.5;
+      bottom: 0; left: 0; right: 0;
+      padding: 50px 22px 22px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.55) 100%);
+      color: white;
     }
-
     .gallery-caption-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
       margin-bottom: 3px;
-      text-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    .gallery-caption-sub {
+      font-size: .78rem;
+      color: rgba(255,255,255,.75);
     }
 
-    .gallery-caption-sub {
-      font-size: .8rem;
-      color: rgba(255,255,255,.8);
-      font-weight: 400;
-      letter-spacing: .01em;
+    /* ── WHO WE SERVE CARDS (service-card style from index) ── */
+    .services-mosaic {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
     }
+    .service-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 32px 22px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-top: 5px solid var(--yellow);
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--yellow), transparent);
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 24px 60px rgba(75,46,19,.2);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 3rem; margin-bottom: 18px; display: block; }
 
     /* ── BENTO PROFILES ── */
-    .bento-section { background: var(--cream-dk); }
-
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       grid-auto-rows: 220px;
-      gap: 14px;
+      gap: 16px;
     }
-
     .bento-card {
       position: relative;
-      border-radius: 16px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 6px 24px rgba(62,34,9,.1), 0 1px 3px rgba(62,34,9,.04);
+      box-shadow: var(--shadow);
       cursor: pointer;
     }
-
     .bento-card img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
+      transition: transform .5s ease;
     }
-
+    .bento-card:hover img { transform: scale(1.07); }
     .bento-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 35%, rgba(25,12,3,.8) 100%);
+      background: linear-gradient(180deg, transparent 35%, rgba(25,12,3,.82) 100%);
     }
-
     .bento-content {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 18px;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
     }
-
     .bento-badge {
       display: inline-block;
       background: var(--yellow);
@@ -348,269 +323,269 @@
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
-      padding: 3px 11px;
-      border-radius: 999px;
-      margin-bottom: 5px;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 6px;
     }
-
     .bento-content h4 {
       color: white;
       font-family: 'Playfair Display', serif;
       font-size: 1.08rem;
       margin-bottom: 3px;
-      font-weight: 600;
+      font-weight: 700;
     }
-
     .bento-content p {
       color: rgba(255,255,255,.65);
       font-size: .75rem;
       line-height: 1.5;
       margin: 0;
     }
-
     .bento-a { grid-column: span 5; grid-row: span 2; }
     .bento-b { grid-column: span 4; grid-row: span 1; }
     .bento-c { grid-column: span 3; grid-row: span 1; }
     .bento-d { grid-column: span 3; grid-row: span 1; }
     .bento-e { grid-column: span 4; grid-row: span 1; }
 
-    @media (max-width: 991px) {
-      .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
-      .bento-a, .bento-b, .bento-c, .bento-d, .bento-e {
-        grid-column: span 1;
-        grid-row: span 1;
-      }
+    /* ── DEMOGRAPHICS (dark brown like index core values) ── */
+    .demo-section {
+      background: var(--brown);
+      position: relative;
+      overflow: hidden;
     }
-
-    @media (max-width: 575px) {
-      .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .demo-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(245,197,24,.07) 0%, transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(245,197,24,.05) 0%, transparent 45%);
     }
-
-    /* ── TESTIMONIALS ── */
-    .quote-section { background: var(--cream); }
-
-    .quotes-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 18px;
-    }
-
-    .quote-card {
-      background: var(--white);
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 2px 12px rgba(62,34,9,.06), 0 1px 3px rgba(62,34,9,.04);
-      border: 1px solid rgba(62,34,9,.04);
-      transition: box-shadow .18s;
-    }
-
-    .quote-card:hover {
-      box-shadow: 0 8px 24px rgba(62,34,9,.1), 0 1px 3px rgba(62,34,9,.04);
-    }
-
-    .quote-stars {
-      color: var(--yellow);
-      font-size: .8rem;
-      margin-bottom: 10px;
-    }
-
-    .quote-text {
-      font-size: .85rem;
-      color: var(--brown);
-      line-height: 1.7;
-      font-style: italic;
-      margin-bottom: 16px;
-    }
-
-    .quote-author {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .quote-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--cream-dk);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .7rem;
-      font-weight: 700;
-      color: var(--brown-lt);
-      flex-shrink: 0;
-    }
-
-    .quote-author-name {
-      font-size: .8rem;
-      font-weight: 600;
-      color: var(--brown);
-    }
-
-    .quote-author-role {
-      font-size: .7rem;
-      color: var(--muted);
-    }
-
-    /* ── DEMOGRAPHICS ── */
-    .demo-section { background: var(--brown); }
-    .demo-section .sec-title { color: var(--cream); }
-    .demo-section .sec-sub { color: rgba(253,248,240,.55); }
+    .demo-section .container { position: relative; z-index: 2; }
+    .demo-section .section-title { color: var(--cream); }
 
     .demo-stat-box {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(245,197,24,.15);
-      border-radius: 12px;
-      padding: 20px 16px;
+      background: rgba(255,248,231,.08);
+      border: 1px solid rgba(245,197,24,.2);
+      border-radius: 20px;
+      padding: 22px 16px;
       text-align: center;
+      backdrop-filter: blur(8px);
+      transition: all .3s;
     }
-
+    .demo-stat-box:hover {
+      background: rgba(245,197,24,.12);
+      transform: translateY(-4px);
+    }
     .demo-stat-num {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-size: 1.9rem;
       color: var(--yellow);
       font-weight: 700;
       line-height: 1;
+      margin-bottom: 6px;
     }
-
     .demo-stat-lbl {
-      font-size: .74rem;
-      color: rgba(253,248,240,.55);
-      margin-top: 6px;
-      letter-spacing: .02em;
+      font-size: .65rem;
+      color: rgba(255,248,231,.55);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
 
     .channel-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 14px;
-      padding: 28px 24px;
+      background: rgba(255,248,231,.07);
+      border: 1px solid rgba(245,197,24,.18);
+      border-radius: 24px;
+      padding: 32px 28px;
+      backdrop-filter: blur(8px);
     }
-
-    .channel-row { margin-bottom: 20px; }
+    .channel-row { margin-bottom: 22px; }
     .channel-row:last-child { margin-bottom: 0; }
-
     .channel-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 8px;
     }
-
     .channel-name {
-      font-size: .84rem;
+      font-size: .85rem;
       font-weight: 600;
       color: var(--cream);
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .channel-name i {
-      color: var(--yellow);
-      font-size: .9rem;
-    }
-
+    .channel-name i { color: var(--yellow); font-size: .9rem; }
     .channel-pct {
       font-size: .8rem;
-      color: rgba(253,248,240,.5);
-      font-weight: 500;
+      color: rgba(255,248,231,.5);
+      font-weight: 600;
     }
-
     .channel-bar-bg {
       background: rgba(255,255,255,.08);
-      border-radius: 999px;
-      height: 6px;
+      border-radius: 50px;
+      height: 7px;
       overflow: hidden;
     }
-
     .channel-bar-fill {
       height: 100%;
-      border-radius: 999px;
+      border-radius: 50px;
     }
 
-    /* ── FOOTER STRIP ── */
-    .footer-strip {
-      background: var(--yellow);
-      padding: 56px 0;
-      text-align: center;
+    /* ── CTA WAVE (matches index) ── */
+    .cta-wave {
+      background: linear-gradient(135deg, var(--yellow) 0%, #FDE87A 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 72px 0;
+    }
+    .cta-wave::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0' fill='%23FFF8E7'/%3E%3C/svg%3E") bottom / cover;
     }
 
-    .footer-strip h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
-      color: var(--brown);
-      margin-bottom: 8px;
-      letter-spacing: -.01em;
-    }
-
-    .footer-strip p {
-      color: var(--brown-mid);
-      font-size: .92rem;
-      letter-spacing: .01em;
+    /* ── SCROLL ANIMATIONS ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+      .fade-up.visible { opacity: 1; transform: none; }
+      .fade-up-d1 { transition-delay: .1s; }
+      .fade-up-d2 { transition-delay: .2s; }
+      .fade-up-d3 { transition-delay: .3s; }
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .story-stat-row { flex-direction: column; }
-      .quote-card { padding: 20px; }
+    @media (max-width: 991px) {
+      .bento-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .bento-a, .bento-b, .bento-c, .bento-d, .bento-e {
+        grid-column: span 1; grid-row: span 1;
+      }
+    }
+    @media (max-width: 575px) {
+      .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+      .services-mosaic { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
-
 <body>
 
-<!-- HERO -->
-<div class="page-hero">
-  <div class="page-hero-content">
-    <div class="page-hero-eyebrow">Yellow Bean Community</div>
-    <h1>Our <em>Customers</em></h1>
-    <p>The people behind every cup, smile, and story at Yellow Bean Café</p>
-  </div>
-  <div class="hero-scroll-hint">
-    scroll<span></span>
-  </div>
-</div>
-
-
-
-<!-- FEATURED STORY -->
-<section class="sec featured-story">
+<!-- ══════════════════════════════════════
+     HERO — matches index hero style
+═══════════════════════════════════════ -->
+<section class="hero-modern">
+  <div class="hero-coffee-orbit">☕</div>
   <div class="container">
     <div class="row align-items-center g-5">
 
+      <!-- LEFT: TEXT -->
       <div class="col-lg-6">
-        <div class="story-img-wrap">
-          <img src="../image/daily.jpg" alt="Daily coffee visitors at Yellow Bean">
-          <div class="story-img-tag">
-            <h5>Coffee Lovers</h5>
-            <small>Daily visitors · Morning routine · Regulars</small>
-          </div>
+        <span class="hero-badge">👥 Yellow Bean Community</span>
+        <h1 class="fade-up">
+          Our <span>Customers</span>
+        </h1>
+        <p class="hero-desc fade-up fade-up-d1">
+          The people behind every cup, smile, and story at Yellow Bean Café. From daily regulars to first-time visitors — every face matters to us.
+        </p>
+        <div class="d-flex gap-3 mt-4 flex-wrap fade-up fade-up-d2">
+          
         </div>
       </div>
 
-      <div class="col-lg-6 story-text">
-        <span class="badge-pill">Primary Customers</span>
-        <h2 class="sec-title">People Who Start Their Day With Us</h2>
-        <p>These are our daily visitors — students, workers, and locals who make Yellow Bean part of their routine. They come for consistency, comfort, and the familiar warmth of a place they know.</p>
-        
+      <!-- RIGHT: STAT CARDS -->
+      <div class="col-lg-6 fade-up fade-up-d2">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="background:rgba(255,248,231,.12);border:1px solid rgba(245,197,24,.3);border-radius:20px;padding:26px 18px;text-align:center;backdrop-filter:blur(12px);transition:all .3s;" onmouseover="this.style.background='rgba(245,197,24,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,248,231,.12)';this.style.transform='none'">
+            <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--yellow);line-height:1;margin-bottom:7px;">6+</div>
+            <div style="font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,248,231,.6);">Customer Types</div>
+          </div>
+          <div style="background:rgba(255,248,231,.12);border:1px solid rgba(245,197,24,.3);border-radius:20px;padding:26px 18px;text-align:center;backdrop-filter:blur(12px);transition:all .3s;" onmouseover="this.style.background='rgba(245,197,24,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,248,231,.12)';this.style.transform='none'">
+            <div style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--yellow);line-height:1;margin-bottom:7px;">15–40</div>
+            <div style="font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,248,231,.6);">Primary Age Range</div>
+          </div>
+          <div style="background:rgba(255,248,231,.12);border:1px solid rgba(245,197,24,.3);border-radius:20px;padding:26px 18px;text-align:center;backdrop-filter:blur(12px);transition:all .3s;" onmouseover="this.style.background='rgba(245,197,24,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,248,231,.12)';this.style.transform='none'">
+            <div style="font-size:2rem;line-height:1;margin-bottom:7px;">📍</div>
+            <div style="font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,248,231,.6);">Tulo, Taal &amp; Nearby</div>
+          </div>
+          <div style="background:rgba(255,248,231,.12);border:1px solid rgba(245,197,24,.3);border-radius:20px;padding:26px 18px;text-align:center;backdrop-filter:blur(12px);transition:all .3s;" onmouseover="this.style.background='rgba(245,197,24,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.background='rgba(255,248,231,.12)';this.style.transform='none'">
+            <div style="font-size:2rem;line-height:1;margin-bottom:7px;">💛</div>
+            <div style="font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,248,231,.6);">Daily Community</div>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- PHOTO GALLERY -->
-<section class="sec" style="background:var(--cream)">
-  <div class="container text-center mb-5">
-    <span class="badge-pill">Customer Moments</span>
-    <h2 class="sec-title">Inside Yellow Bean Café</h2>
+<!-- ══════════════════════════════════════
+     FEATURED STORY
+═══════════════════════════════════════ -->
+  <section class="section-pad" style="background: var(--cream-dk);">
+    <div class="container">
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-6 fade-up">
+  <div class="story-img-wrap">
+    <img src="../image/daily.jpg" alt="Daily coffee visitors at Yellow Bean">
+    
+    <div class="story-img-tag">
+      <h5 style="color: var(--yellow);">Coffee Lovers</h5>
+      <small>Daily visitors · Morning routine · Regulars</small>
+    </div>
+
   </div>
+</div>
 
+      <div class="col-lg-6 fade-up">
+        <span class="badge-category">Primary Customers</span>
+        <h2 class="section-title">People Who Start Their Day With Us</h2>
+        <p style="color:var(--muted);font-size:1rem;line-height:1.85;">
+          These are our daily visitors — students, workers, and locals who make Yellow Bean part of their routine. They come for consistency, comfort, and the familiar warmth of a place they know.
+        </p>
+        <div class="row g-3 mt-4">
+          <div class="col-4">
+            <div class="story-stat">
+              <div class="num">Daily</div>
+              <div class="lbl">Active Visits</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="story-stat">
+              <div class="num">57</div>
+              <div class="lbl">Menu Items</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="story-stat">
+              <div class="num">2023</div>
+              <div class="lbl">Est.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PHOTO GALLERY
+═══════════════════════════════════════ -->
+<section class="section-pad bg-cream">
   <div class="container">
-    <div class="row g-3">
+    <div class="text-center mb-5 fade-up">
+      <span class="badge-category">Customer Moments</span>
+      <h2 class="section-title">Inside Yellow Bean Café</h2>
+      <p class="section-subtitle">Real moments, real people — this is what Yellow Bean looks like every day.</p>
+    </div>
 
+    <div class="row g-3 fade-up">
       <div class="col-md-8">
         <div class="gallery-item feature">
           <img src="../image/studentstudy.jpg" alt="Students studying">
@@ -620,12 +595,11 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-4">
         <div class="row g-3">
           <div class="col-12">
             <div class="gallery-item">
-              <img src="../image/friendshanging.jpg" alt="Friends hanging out" style="height:195px">
+              <img src="../image/friendshanging.jpg" alt="Friends hanging out" style="height:195px;">
               <div class="gallery-caption">
                 <div class="gallery-caption-title">Friends Hanging Out</div>
                 <div class="gallery-caption-sub">Moments that matter</div>
@@ -634,7 +608,7 @@
           </div>
           <div class="col-12">
             <div class="gallery-item">
-              <img src="../image/familyvisits.jpg" alt="Family visits" style="height:195px">
+              <img src="../image/familyvisits.jpg" alt="Family visits" style="height:195px;">
               <div class="gallery-caption">
                 <div class="gallery-caption-title">Family Visits</div>
                 <div class="gallery-caption-sub">Bonding over coffee</div>
@@ -643,62 +617,97 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-4">
         <div class="gallery-item">
-          <img src="../image/coffeebreak.jpg" alt="Coffee break moments">
+          <img src="../image/coffeebreak.jpg" alt="Coffee break">
           <div class="gallery-caption">
             <div class="gallery-caption-title">Coffee Breaks</div>
             <div class="gallery-caption-sub">A pause in the day</div>
           </div>
         </div>
       </div>
-
       <div class="col-md-4">
         <div class="gallery-item">
-          <img src="../image/takeout.jpg" alt="Takeout customers">
+          <img src="../image/takeout.jpg" alt="Takeout">
           <div class="gallery-caption">
             <div class="gallery-caption-title">Takeout Orders</div>
             <div class="gallery-caption-sub">Quality on the go</div>
           </div>
         </div>
       </div>
-
       <div class="col-md-4">
         <div class="gallery-item">
-          <img src="../image/online.jpg" alt="Online delivery orders">
+          <img src="../image/online.jpg" alt="Delivery">
           <div class="gallery-caption">
             <div class="gallery-caption-title">Delivery Service</div>
             <div class="gallery-caption-sub">Fresh to your door</div>
           </div>
         </div>
       </div>
-
       <div class="col-12">
-        <div class="gallery-item tall">
-          <img src="../image/community.jpg" alt="Yellow Bean Community" style="height:360px">
+        <div class="gallery-item">
+          <img src="../image/community.jpg" alt="Yellow Bean Community" style="height:340px;object-fit:cover;">
           <div class="gallery-caption">
             <div class="gallery-caption-title">Yellow Bean Community</div>
             <div class="gallery-caption-sub">Every visit creates a memory we cherish</div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- WHO WE SERVE — BENTO GRID -->
-<section class="sec bento-section">
-  <div class="container text-center mb-5">
-    <span class="badge-pill">Customer Profiles</span>
-    <h2 class="sec-title">Who We Serve</h2>
-    <p class="sec-sub">Real people who make Yellow Bean Café alive every single day</p>
-  </div>
-
+<!-- ══════════════════════════════════════
+     WHO WE SERVE (service card style)
+═══════════════════════════════════════ -->
+<section id="who-we-serve" class="section-pad" style="background: var(--cream-dk);">
   <div class="container">
-    <div class="bento-grid">
+    <div class="text-center mb-5 fade-up">
+      <span class="badge-category">Customer Profiles</span>
+      <h2 class="section-title">Who We Serve</h2>
+      <p class="section-subtitle">Real people who make Yellow Bean Café alive every single day.</p>
+    </div>
+    <div class="services-mosaic fade-up">
+      <div class="service-card">
+        <span class="service-icon">☕</span>
+        <h5 style="color:var(--brown);">Coffee Lovers</h5>
+        <p style="color:var(--muted);font-size:.85rem;">Daily customers who enjoy coffee as an essential part of their routine.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎓</span>
+        <h5 style="color:var(--brown);">Young Students</h5>
+        <p style="color:var(--muted);font-size:.85rem;">Study, hang out, and relax in our cozy café atmosphere.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">👨‍👩‍👧‍👦</span>
+        <h5 style="color:var(--brown);">Family Customers</h5>
+        <p style="color:var(--muted);font-size:.85rem;">Weekend bonding over food and drinks in a welcoming space.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💼</span>
+        <h5 style="color:var(--brown);">Workers &amp; Employees</h5>
+        <p style="color:var(--muted);font-size:.85rem;">Quick breaks, calm meetings, and a reliable daily stop.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏀</span>
+        <h5 style="color:var(--brown);">Sports Fans</h5>
+        <p style="color:var(--muted);font-size:.85rem;">Refreshing drinks during games and local tournaments.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ══════════════════════════════════════
+     BENTO PROFILES
+═══════════════════════════════════════ -->
+<section class="section-pad bg-cream">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <span class="badge-category">In the Café</span>
+      <h2 class="section-title">Familiar Faces, Everyday Moments</h2>
+      <p class="section-subtitle">A glimpse at the wonderful people who walk through our doors.</p>
+    </div>
+    <div class="bento-grid fade-up">
       <div class="bento-card bento-a">
         <img src="../image/coffeelovers.jpg" alt="Coffee Lovers">
         <div class="bento-overlay"></div>
@@ -708,7 +717,6 @@
           <p>Daily customers who enjoy coffee as an essential part of their everyday routine.</p>
         </div>
       </div>
-
       <div class="bento-card bento-b">
         <img src="../image/youngstudents.jpg" alt="Young Students">
         <div class="bento-overlay"></div>
@@ -718,7 +726,6 @@
           <p>Study, hangout, and relax in a cozy café atmosphere.</p>
         </div>
       </div>
-
       <div class="bento-card bento-c">
         <img src="../image/fam.jpg" alt="Family Customers">
         <div class="bento-overlay"></div>
@@ -728,17 +735,15 @@
           <p>Weekend bonding over food and drinks.</p>
         </div>
       </div>
-
       <div class="bento-card bento-d">
         <img src="../image/workers.jpg" alt="Workers">
         <div class="bento-overlay"></div>
         <div class="bento-content">
           <div class="bento-badge">Professionals</div>
-          <h4>Workers & Employees</h4>
+          <h4>Workers &amp; Employees</h4>
           <p>Quick breaks and calm meetings.</p>
         </div>
       </div>
-
       <div class="bento-card bento-e">
         <img src="../image/sports.jpg" alt="Sports Fans">
         <div class="bento-overlay"></div>
@@ -748,114 +753,25 @@
           <p>Drinks during games and tournaments.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 
 
-<!-- DEMOGRAPHICS -->
-<section class="sec demo-section">
-  <div class="container">
-    <div class="row align-items-center g-5">
-
-      <div class="col-lg-6">
-        <span class="badge-pill" style="background:rgba(245,197,24,.12);border-color:rgba(245,197,24,.28);color:var(--yellow-lt)">Our Market</span>
-        <h2 class="sec-title mt-3">Who Visits Yellow Bean</h2>
-        <p class="sec-sub" style="margin:0">
-          Yellow Bean primarily serves Tulo, Taal, Batangas and surrounding communities.
-          Our market spans students and young adults to working professionals and families.
-        </p>
-        <div class="row g-3 mt-3">
-          <div class="col-6">
-            <div class="demo-stat-box">
-              <div class="demo-stat-num">15–40</div>
-              <div class="demo-stat-lbl">Primary Age Range</div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="demo-stat-box">
-              <div class="demo-stat-num">Local</div>
-              <div class="demo-stat-lbl">Tulo, Taal & Nearby</div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="demo-stat-box">
-              <div class="demo-stat-num">6+</div>
-              <div class="demo-stat-lbl">Customer Segments</div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="demo-stat-box">
-              <div class="demo-stat-num">Daily</div>
-              <div class="demo-stat-lbl">Active Community</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="channel-card">
-          <h6 style="color:var(--yellow);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:24px">Customer Channels</h6>
-
-          <div class="channel-row">
-            <div class="channel-header">
-              <span class="channel-name"><i class="bi bi-shop"></i>Walk-in / Dine In</span>
-              <span class="channel-pct">45%</span>
-            </div>
-            <div class="channel-bar-bg">
-              <div class="channel-bar-fill" style="width:45%;background:var(--yellow)"></div>
-            </div>
-          </div>
-
-          <div class="channel-row">
-            <div class="channel-header">
-              <span class="channel-name"><i class="bi bi-bag-check"></i>Takeout</span>
-              <span class="channel-pct">30%</span>
-            </div>
-            <div class="channel-bar-bg">
-              <div class="channel-bar-fill" style="width:30%;background:#e67e22"></div>
-            </div>
-          </div>
-
-          <div class="channel-row">
-            <div class="channel-header">
-              <span class="channel-name"><i class="bi bi-bicycle"></i>Delivery</span>
-              <span class="channel-pct">18%</span>
-            </div>
-            <div class="channel-bar-bg">
-              <div class="channel-bar-fill" style="width:18%;background:#5dbb63"></div>
-            </div>
-          </div>
-
-          <div class="channel-row">
-            <div class="channel-header">
-              <span class="channel-name"><i class="bi bi-calendar-event"></i>Events</span>
-              <span class="channel-pct">7%</span>
-            </div>
-            <div class="channel-bar-bg">
-              <div class="channel-bar-fill" style="width:7%;background:#d0785a"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER STRIP -->
-<div class="footer-strip">
-  <div class="container">
-    <h3>You Are the Heart of Yellow Bean</h3>
-    <p>Every customer shapes our café experience — and we're grateful for every single one.</p>
-  </div>
-</div>
 
 <script src="../shared-nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
