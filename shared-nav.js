@@ -12,7 +12,7 @@
   </div>
   <nav class="navbar navbar-yb navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="${base}index.html">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="${base}home.html">
   <img src="${base}image/logo.png" alt="Yellow Bean Logo" style="height:80px;">
   <span>Yellow Bean</span>
 </a>
@@ -21,7 +21,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navMain">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-          <li class="nav-item"><a class="nav-link" href="${base}index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="${base}home.html">Home</a></li>
           <li class="nav-item">
   <a class="nav-link" href="${base}pages/about.html">About</a>
 </li>
@@ -82,7 +82,7 @@
         <div class="col-lg-2 col-md-6">
           <h5>Navigate</h5>
           <ul class="list-unstyled">
-            <li><a href="${base}index.html">Home</a></li>
+            <li><a href="${base}home.html">Home</a></li>
             <li><a href="${base}pages/about.html">About Us</a></li>
             <li><a href="${base}pages/menu.html">Menu</a></li>
             <li><a href="${base}pages/services.html">Services</a></li>
