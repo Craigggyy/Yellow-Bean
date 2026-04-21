@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
   <link rel="stylesheet" href="css/style.css"/>
   <style>
-  /* Homepage Custom Styles */
   .hero-modern {
     min-height: 100vh;
     background: linear-gradient(135deg, var(--brown) 0%, #6B3E1E 50%, rgba(245,197,24,.1) 100%);
@@ -125,7 +124,6 @@
     .hero-coffee-orbit { font-size: 10rem; right: 5%; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  /* BIG IMAGE HERO */
 .image-showcase {
   background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(245,197,24,.06));
   backdrop-filter: blur(20px);
@@ -187,7 +185,6 @@
     filter: brightness(1.15) contrast(1.15) saturate(1.25);
   }
   
-  /* Golden Frame Effects */
   .gallery-frame {
     position: absolute;
     inset: 0;
@@ -206,7 +203,6 @@
     opacity: 1;
   }
   
-  /* Staggered Animation */
   .gallery-image-card:nth-child(1) { animation-delay: 0.1s; }
   .gallery-image-card:nth-child(2) { animation-delay: 0.2s; }
   .gallery-image-card:nth-child(3) { animation-delay: 0.3s; }
@@ -222,7 +218,6 @@
     animation: galleryFadeUp .8s ease forwards;
   }
   
-  /* Image Labels */
   .image-label {
     position: absolute;
     bottom: 16px;
@@ -245,7 +240,6 @@
     transform: translateY(0);
   }
   
-  /* Responsive */
   @media (max-width: 992px) {
     .image-gallery-showcase {
       grid-template-columns: 1fr;
@@ -266,13 +260,11 @@
 </head>
 <body>
 
-<!-- HERO WITH BIG PROMINENT IMAGE -->
 <section class="hero-big-image" style="min-height: 95vh; background: linear-gradient(135deg, var(--brown) 0%, #6B3E1E 60%, rgba(245,197,24,.1) 100%); position: relative; overflow: hidden;">
   
   <div class="container h-100">
     <div class="row h-100 align-items-center g-5">
       
-      <!-- LEFT: TEXT CONTENT -->
       <div class="col-xl-6 col-lg-7">
         <span class="hero-badge px-4 py-2 mb-4" style="background: linear-gradient(135deg, var(--yellow), #FDE87A); box-shadow: 0 12px 32px rgba(245,197,24,.4); font-weight: 700;">
           Est. October 2023 · Taal, Batangas
@@ -289,20 +281,15 @@
         </div>
       </div>
       
-      <!-- RIGHT: BIG BEAUTIFUL IMAGE -->
       <div class="col-xl-6 col-lg-5">
     <div class="image-showcase position-relative h-100" style="height: 580px; border-radius: 36px; overflow: hidden; box-shadow: 0 40px 120px rgba(0,0,0,.4);">
-      <!-- [Big image content remains exactly the same] -->
       <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t1.15752-9/666484074_2657130928002755_4243674843540335580_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEOEe9Bw8qC7G8QGhpHYqIp_7fmaXeXXbH_t-Zpd5ddsamP4p5MN93xBLUapXeHB9wYnXToTZNimmXwKVCWf1qz&_nc_ohc=qtfObbGwK3MQ7kNvwGmUaMX&_nc_oc=AdppPdMVGQX-Wf4UpG57_5I8qjA_OwdLtapRX4MwXAnrOYuDrpqvvX9yvtY7QIcmW-4&_nc_pt=1&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_ss=7a3a8&oh=03_Q7cD5AHIAlsrvLc8n_v16qruK2ZjIP8PU_QqvnHF7Mfy4qNMiw&oe=6A09E3FF" 
            alt="Yellow Bean Café Interior" 
            class="big-hero-image w-100 h-100 object-fit-cover"
            style="transition: all .6s cubic-bezier(0.25, 0.46, 0.45, 0.94); filter: brightness(1.05) contrast(1.1);">
-      <!-- [Rest of big image styling remains the same] -->
     </div>
     
-    <!-- NEW: 3 ADDITIONAL IMAGES GALLERY -->
     <div class="image-gallery-showcase">
-      <!-- Image 1: Coffee Cup Closeup -->
       <div class="gallery-image-card">
         <div class="gallery-frame"></div>
         <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/651876658_122285609528023536_7135456181732756244_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeGQoAFGNFNZi6DfUYi9zAOkiBYiEgrbMHiIFiISCtsweMYxSgeZhb9hJM6LOqGfIEyFS2RWi80SLtffe_ZRXfnr&_nc_ohc=VummdLCYXqEQ7kNvwGiXqQR&_nc_oc=AdqqrePFwmWvfBwexC0jgiIXRdmOVe3NwJ2cxy8M71Di6MPnR0t8W_4UsaAC2WhR7Gc&_nc_pt=1&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=zDQk1Fg8O3osRLqYOo_Ztg&_nc_ss=7a3a8&oh=00_Af1Z8uApr9bZthWKlR9IxuRFJbp9lChzM4wKIs8O6d3s8A&oe=69E81CE9" 
@@ -313,7 +300,6 @@
         </div>
       </div>
       
-      <!-- Image 2: Pastries Display -->
       <div class="gallery-image-card">
         <div class="gallery-frame"></div>
         <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/634015573_122282155070023536_6925952224740499652_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEB7L7RTpXoJy3DS-lH9cfcvpSiTWiDuku-lKJNaIO6S6GF9otGCTglo-P1sEAqUpwKmFYMrFNDQ4j6ymzUaltE&_nc_ohc=ELiVtSGgco4Q7kNvwGHS1dE&_nc_oc=AdpU6cd3pyx3oJ5Zj6TLqniRuagKz2tmrCSk27z1y6n3t4hSbIGVhvqeukwbOM7Tl9Q&_nc_pt=1&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=fPXT4UnuqqYbBjo0ZQpgTA&_nc_ss=7a3a8&oh=00_Af32atoHD0w_loPFJIne1guOSC16UirpWQ7jmlL_DqDXtQ&oe=69E83A4D" 
@@ -324,7 +310,6 @@
         </div>
       </div>
       
-      <!-- Image 3: Cozy Corner -->
       <div class="gallery-image-card">
         <div class="gallery-frame"></div>
         <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/640286549_122282673236023536_7202822029475470638_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFdkNwVDhN4x-srkVkiQmBvIZMKY7m35b8hkwpjubflv94wFeE4jObA5Wj2KG2l4G6ANoqzH-H4GKK3vgdzS8oP&_nc_ohc=4CZWIQyxVUkQ7kNvwEResrq&_nc_oc=Adp7R1Epk7hlJBOEwVxIJWfWkr8MDl9l2jMBt8i1MbjdUMaxmY27Fp-CbyByUFhd-qs&_nc_pt=1&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=R37UsvQkm_uxR5lMQiRGBQ&_nc_ss=7a3a8&oh=00_Af17aYKOr5hMPBN2Gye0hPTyqOfqGD6N5erCIvGKPc-_aw&oe=69E8251F" 
@@ -337,14 +322,11 @@
     </div>
   </div>
           
-          <!-- Image Frame/Border Effect -->
           <div class="image-frame position-absolute inset-0" style="box-shadow: inset 0 0 0 3px rgba(255,255,255,.3), inset 0 0 0 8px rgba(245,197,24,.2);"></div>
           
-          <!-- Golden Corner Accents -->
           <div class="corner-accent position-absolute top-0 start-0 w-24 h-24" style="background: linear-gradient(135deg, var(--yellow), transparent); transform: rotate(45deg); opacity: .3;"></div>
           <div class="corner-accent position-absolute top-0 end-0 w-24 h-24" style="background: linear-gradient(-45deg, var(--yellow), transparent); transform: rotate(-45deg); opacity: .3;"></div>
           
-          <!-- Stats Overlay -->
           <div class="stats-overlay position-absolute bottom-0 start-0 p-5 pb-4 w-100" style="background: linear-gradient(transparent, rgba(0,0,0,.85) 90%); backdrop-filter: blur(15px);">
             <div class="row g-3 text-white">
               <div class="col-4 text-center">
@@ -367,11 +349,9 @@
     </div>
   </div>
   
-  <!-- Floating Decorations -->
   <div class="steam-effect position-absolute top-30% end-10%" style="font-size: 3.5rem; opacity: .08; animation: steamRise 4s ease-in-out infinite; z-index: 2;">☕</div>
 </section>
 
-<!-- STORY SECTION -->
 <section class="section-pad bg-cream">
   <div class="container">
     <div class="row align-items-center g-5">
@@ -422,7 +402,6 @@
   </div>
 </section>
 
-<!-- MENU HERO -->
 <section class="section-pad" style="background: var(--cream-dk);">
   <div class="container">
     <div class="text-center mb-4">
@@ -536,7 +515,6 @@
   </div>
 </section>
 
-<!-- SERVICES MOSAIC -->
 <section class="section-pad bg-cream">
   <div class="container">
     <div class="text-center mb-5">
@@ -572,7 +550,6 @@
   </div>
 </section>
 
-<!-- EVENTS TEASER -->
 <section class="section-pad-sm" style="background: linear-gradient(135deg, var(--cream-dk) 0%, var(--cream) 100%);">
   <div class="container">
     <div class="row align-items-center g-5">
@@ -590,7 +567,6 @@ Watch out for our next appearance — and join us as we mark this special milest
   </div>
 </section>
 
-<!-- GRAND CTA -->
 <section class="cta-wave py-5 position-relative">
   <div class="container text-center" style="position: relative; z-index: 2;">
     <h2 style="color:var(--brown); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 20px;">

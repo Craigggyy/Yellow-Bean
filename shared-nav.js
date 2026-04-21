@@ -1,8 +1,5 @@
-// shared-nav.js — injects navbar and footer into every page
-// Usage: <script src="../shared-nav.js"></script> or <script src="shared-nav.js"></script>
 
 (function() {
-  // Detect depth
   const isRoot = !window.location.pathname.includes('/pages/');
   const base = isRoot ? '' : '../';
 
@@ -115,11 +112,9 @@
     </div>
   </footer>`;
 
-  // Inject before first element
   document.body.insertAdjacentHTML('afterbegin', navHTML);
   document.body.insertAdjacentHTML('beforeend', footerHTML);
 
-  // Highlight active link
   const links = document.querySelectorAll('.navbar-yb .nav-link, .navbar-yb .dropdown-item');
   links.forEach(link => {
     if (link.href === window.location.href) {

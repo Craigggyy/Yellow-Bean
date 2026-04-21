@@ -678,7 +678,6 @@ v          </div>
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  /* Clone cards for seamless infinite loop */
   const belt = document.getElementById('marquee-belt');
   const originals = Array.from(belt.children);
   originals.forEach(card => belt.appendChild(card.cloneNode(true)));
